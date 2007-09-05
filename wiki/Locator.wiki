@@ -20,7 +20,7 @@ select Element with control type E
 ==Attribute selector==
 {{{
 E[foo='content like 'this''] 
-  foo := className | name| id | text, and 
+  foo := className | name| id
 }}}
 select Element with control type E and attribute foo with the value "content like 'this'". 
 So far the attribute value can not contain "[".
@@ -59,7 +59,6 @@ E > F
 In eft:
 * id and className can contain space and maybe other characters because the id and class name of window and control may contain space and other characters.
 * Multiple controls can have same id(which is actually automation id).
-
 
 
 
