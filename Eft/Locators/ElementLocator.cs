@@ -26,7 +26,7 @@ namespace Eft.Locators
             }
             if (selector is DescendantSelector)
             {
-                return Find((DescendantSelector)selector);
+                return Find((DescendantSelector) selector);
             }
             if (selector is PositionalSelector)
             {

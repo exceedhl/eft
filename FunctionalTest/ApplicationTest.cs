@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Eft;
 using Eft.Win32;
 using NUnit.Framework;
@@ -18,19 +17,6 @@ namespace FunctionalTest
             Assert.IsTrue(APIWrapper.FindWindow("WordPadClass", "Document - WordPad") > 0);
             app.Stop();
             Assert.IsTrue(APIWrapper.FindWindow("WordPadClass", "Document - WordPad") == 0);
-        }
-
-        [Test]
-        public void find_window_by_title()
-        {
-            Application app = new Application("wordpad");
-            app.Start();
-
-            string title = "Document - WordPad";
-            List<Window> windows = app.FindWindow(title);
-            Assert.AreEqual(1, windows.Count);
-            Assert.AreEqual(title, windows[0].Title);
-            app.Stop();
         }
 
         [Test]

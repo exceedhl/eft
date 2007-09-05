@@ -84,7 +84,6 @@
     <Compile Include="Win32\APIWrapper.cs" />
     <Compile Include="Win32\Mouse.cs" />
     <Compile Include="Win32\SendMouseInputFlags.cs" />
-    <Compile Include="Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

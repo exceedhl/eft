@@ -51,7 +51,8 @@ namespace Eft.Locators.Selectors
             return result;
         }
 
-        private static Selector ParseCombinatedSelector(Scanner scanner, string combinator, SimpleSelector simpleSelector)
+        private static Selector ParseCombinatedSelector(Scanner scanner, string combinator,
+                                                        SimpleSelector simpleSelector)
         {
             Selector result;
             if (!scanner.NextSelector())
@@ -61,7 +62,8 @@ namespace Eft.Locators.Selectors
             if (combinator == ">")
             {
                 result = new ChildrenSelector(ParseSelector(scanner), simpleSelector);
-            }else
+            }
+            else
             {
                 result = new DescendantSelector(ParseSelector(scanner), simpleSelector);
             }

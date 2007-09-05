@@ -59,7 +59,7 @@ namespace FunctionalTest
             Assert.AreEqual("Degrees", app.FindFirst("RadioButton:nth-of-type(4)").Name);
             app.Stop();
         }
-        
+
         [Test]
         public void combination_selector()
         {
