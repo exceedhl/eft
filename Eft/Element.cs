@@ -28,6 +28,18 @@ namespace Eft
             get { return provider.Id; }
         }
 
+        public string Text
+        {
+            get
+            {
+                if (provider.Text != null)
+                {
+                    return provider.Text;
+                }
+                return provider.Name;
+            }
+        }
+
         public void Click()
         {
             provider.Click();
