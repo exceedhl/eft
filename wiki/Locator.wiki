@@ -28,7 +28,7 @@ So far the attribute value can not contain "[".
 {{{
 #id 
 E#id 
-E#'id with space \''
+E#'id with space'
 }}}
 id selector is identical to [id='some id']
 
@@ -36,7 +36,7 @@ id selector is identical to [id='some id']
 {{{
 .class
 E.class
-E.'class with space and \''
+E.'class with space'
 }}}
 Class selector is identical to [className='class']
 
@@ -59,7 +59,6 @@ E > F
 In eft:
 * id and className can contain space and maybe other characters because the id and class name of window and control may contain space and other characters.
 * Multiple controls can have same id(which is actually automation id).
-
 
 
 
