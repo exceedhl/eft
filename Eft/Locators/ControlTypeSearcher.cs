@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Windows.Automation;
-using eft.Exception;
+using Eft.Exception;
 
-namespace eft.Locators
+namespace Eft.Locators
 {
     public class ControlTypeSearcher
     {

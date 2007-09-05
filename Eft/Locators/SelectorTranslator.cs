@@ -1,8 +1,8 @@
 using System.Windows.Automation;
-using eft.Exception;
-using eft.Locators.Selectors;
+using Eft.Exception;
+using Eft.Locators.Selectors;
 
-namespace eft.Locators
+namespace Eft.Locators
 {
     public class SelectorTranslator
     {

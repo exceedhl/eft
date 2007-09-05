@@ -1,6 +1,6 @@
 using System.Windows.Automation;
 
-namespace eft
+namespace Eft
 {
     public class Window
     {

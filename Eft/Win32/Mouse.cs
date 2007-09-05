@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Automation;
 
-namespace eft.Win32
+namespace Eft.Win32
 {
     public class Mouse
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace eft.Win32
+namespace Eft.Win32
 {
     /// <summary>
     /// Flags for Input.SendMouseInput, indicate whether movement took place,

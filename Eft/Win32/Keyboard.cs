@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Input;
 
-namespace eft.Win32
+namespace Eft.Win32
 {
     /// <summary>
     /// Provides methods for sending keyboard input

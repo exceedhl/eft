@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Windows;
-using eft.Locators.Selectors;
+using Eft.Locators.Selectors;
 
-namespace eft.Provider
+namespace Eft.Provider
 {
     public interface IAutomationProvider
     {

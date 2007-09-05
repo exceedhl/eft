@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 
-namespace eft.Win32
+namespace Eft.Win32
 {
     [Flags]
     public enum WindowsMessages

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using eft.Exception;
-using eft.Locators.Selectors;
-using eft.Provider;
+using Eft.Exception;
+using Eft.Locators.Selectors;
+using Eft.Provider;
 
-namespace eft.Locators
+namespace Eft.Locators
 {
     public class ElementLocator
     {

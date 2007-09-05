@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Automation;
-using eft.Locators;
-using eft.Locators.Selectors;
+using Eft.Locators;
+using Eft.Locators.Selectors;
 
-namespace eft.Provider
+namespace Eft.Provider
 {
     public class AutomationProviderFactory
     {

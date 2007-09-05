@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace test.Util
+namespace Eft.Util
 {
     public class PrivateAccessor
     {

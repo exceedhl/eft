@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Automation;
-using eft.Exception;
-using eft.Provider;
+using Eft.Exception;
+using Eft.Provider;
 
-namespace eft
+namespace Eft
 {
     public class Application
     {

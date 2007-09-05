@@ -1,9 +1,9 @@
-using eft;
-using eft.Provider;
+using Eft;
+using Eft.Provider;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace test.Unit
+namespace Eft
 {
     [TestFixture]
     public class ElementTest
