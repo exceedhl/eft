@@ -10,7 +10,9 @@ namespace Eft
     [TestFixture]
     public class ApplicationTest
     {
-        #region Setup/Teardown
+        private MockRepository mocks;
+        private Application app;
+        private IAutomationProvider mockAutomationProvider;
 
         [SetUp]
         public void setup()
@@ -20,12 +22,6 @@ namespace Eft
             app = new Application("");
             PrivateAccessor.SetField(app, "automationProvider", mockAutomationProvider);
         }
-
-        #endregion
-
-        private MockRepository mocks;
-        private Application app;
-        private IAutomationProvider mockAutomationProvider;
 
         [Test]
         public void find_elements_by_selector_string()
@@ -60,6 +56,27 @@ namespace Eft
 
             mocks.ReplayAll();
             app.FindFirst("selector string");
+            mocks.VerifyAll();
+        }
+
+        [Test]
+        public void wait_and_find_should_return_once_found_element()
+        {
+            List<Element> elements = new List<Element>();
+            elements.Add(new Element(null));
+            Expect.Call(mockAutomationProvider.Find("selector")).Return(elements);
+            mocks.ReplayAll();
+            Assert.AreSame(elements, app.WaitAndFind("selector"));
+            mocks.VerifyAll();
+        }
+
+        [Test]
+        [ExpectedException(typeof (ElementSearchException))]
+        public void wait_and_find_should_throw_exception_if_wait_time_out()
+        {
+            Expect.Call(mockAutomationProvider.Find("selector")).Return(new List<Element>()).Repeat.Any();
+            mocks.ReplayAll();
+            app.WaitAndFind("selector", 1);
             mocks.VerifyAll();
         }
     }

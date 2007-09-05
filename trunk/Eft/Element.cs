@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
 
@@ -46,6 +47,16 @@ namespace Eft
         public List<Element> FindChildren(SimpleSelector simpleSelector)
         {
             return provider.FindChildren(simpleSelector);
+        }
+
+        public Element FindFirst(string selectorString)
+        {
+            List<Element> els = Find(selectorString);
+            if (els.Count == 0)
+            {
+                throw new ElementSearchException("No elements found");
+            }
+            return els[0];
         }
     }
 }

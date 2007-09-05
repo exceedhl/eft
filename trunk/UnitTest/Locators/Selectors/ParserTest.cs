@@ -1,5 +1,4 @@
 using Eft.Exception;
-using Eft.Locators.Selectors;
 using NUnit.Framework;
 
 namespace Eft.Locators.Selectors
@@ -177,22 +176,23 @@ namespace Eft.Locators.Selectors
         [Test]
         public void parse_descendant_selector()
         {
-            DescendantSelector selector = (DescendantSelector)parser.Parse("Button Item");
-            Assert.AreEqual("Button", ((ElementSelector)selector.AncestorSelector).LocalName);
-            Assert.AreEqual("Item", ((ElementSelector)selector.SimpleSelector).LocalName);
+            DescendantSelector selector = (DescendantSelector) parser.Parse("Button Item");
+            Assert.AreEqual("Button", ((ElementSelector) selector.AncestorSelector).LocalName);
+            Assert.AreEqual("Item", ((ElementSelector) selector.SimpleSelector).LocalName);
 
-            selector = (DescendantSelector)parser.Parse("Button Item Some");
-            ElementSelector first = (ElementSelector)(((DescendantSelector)selector.AncestorSelector).AncestorSelector);
-            ElementSelector second = (ElementSelector)((DescendantSelector)selector.AncestorSelector).SimpleSelector;
-            ElementSelector third = (ElementSelector)selector.SimpleSelector;
+            selector = (DescendantSelector) parser.Parse("Button Item Some");
+            ElementSelector first =
+                (ElementSelector) (((DescendantSelector) selector.AncestorSelector).AncestorSelector);
+            ElementSelector second = (ElementSelector) ((DescendantSelector) selector.AncestorSelector).SimpleSelector;
+            ElementSelector third = (ElementSelector) selector.SimpleSelector;
             Assert.AreEqual("Button", first.LocalName);
             Assert.AreEqual("Item", second.LocalName);
             Assert.AreEqual("Some", third.LocalName);
 
-            selector = (DescendantSelector)parser.Parse("Button > Item Some");
-            first = (ElementSelector)(((ChildrenSelector)selector.AncestorSelector).AncestorSelector);
-            second = (ElementSelector)((ChildrenSelector)selector.AncestorSelector).SimpleSelector;
-            third = (ElementSelector)selector.SimpleSelector;
+            selector = (DescendantSelector) parser.Parse("Button > Item Some");
+            first = (ElementSelector) (((ChildrenSelector) selector.AncestorSelector).AncestorSelector);
+            second = (ElementSelector) ((ChildrenSelector) selector.AncestorSelector).SimpleSelector;
+            third = (ElementSelector) selector.SimpleSelector;
             Assert.AreEqual("Button", first.LocalName);
             Assert.AreEqual("Item", second.LocalName);
             Assert.AreEqual("Some", third.LocalName);
