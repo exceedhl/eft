@@ -57,8 +57,8 @@ E > F
 
 =Differences with standard W#C CSS selector=
 In eft:
-* id and className can contain space and maybe other characters because the id and class name of window and control may contain space and other characters.
-* Multiple controls can have same id(which is actually automation id).
+ * id and className can contain space and maybe other characters because the id and class name of window and control may contain space and other characters.
+ * Multiple controls can have same id(which is actually automation id).
 
 
 
