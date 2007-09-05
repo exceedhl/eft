@@ -33,6 +33,27 @@ namespace Eft.Provider
             get { return automationElement.Current.AutomationId; }
         }
 
+        public string Text
+        {
+            get
+            {
+                object pattern;
+                if (automationElement.TryGetCurrentPattern(TextPattern.Pattern, out pattern))
+                {
+                    return ((TextPattern) pattern).DocumentRange.GetText(-1);
+                }
+                if (automationElement.TryGetCurrentPattern(ValuePattern.Pattern, out pattern))
+                {
+                    return ((ValuePattern) pattern).Current.Value;
+                }
+                if (automationElement.TryGetCurrentPattern(RangeValuePattern.Pattern, out pattern))
+                {
+                    return ((RangeValuePattern) pattern).Current.Value.ToString();
+                }
+                return null;
+            }
+        }
+
         public Point GetClickablePoint()
         {
             return automationElement.GetClickablePoint();

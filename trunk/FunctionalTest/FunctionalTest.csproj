@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationTest.cs" />
-    <Compile Include="CalculatorTest.cs" />
+    <Compile Include="ClickTest.cs" />
     <Compile Include="FinderTest.cs" />
     <Compile Include="LocatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
