@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
-using Eft.Exception;
 using Eft.Provider;
 
 namespace Eft
@@ -10,14 +8,19 @@ namespace Eft
     public class Application
     {
         private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
-        private const int WAIT_INTERVAL_IN_MILLIS = 100;
         private readonly Process process;
-        private IAutomationProvider automationProvider;
+        private Element mainWindow;
 
         public Application(string fileName)
         {
             process = new Process();
             process.StartInfo.FileName = fileName;
+        }
+
+        public Application(Process process)
+        {
+            this.process = process;
+            mainWindow = new Element(AutomationProviderFactory.FromHandle(process.MainWindowHandle));
         }
 
         public void Start()
@@ -26,7 +29,7 @@ namespace Eft
             try
             {
                 process.WaitForInputIdle(MAXIMUM_WAIT_TIME_IN_SEC*1000);
-                automationProvider = AutomationProviderFactory.FromHandle(process.MainWindowHandle);
+                mainWindow = new Element(AutomationProviderFactory.FromHandle(process.MainWindowHandle));
             }
             catch (InvalidOperationException)
             {
@@ -42,53 +45,20 @@ namespace Eft
             }
         }
 
-        public List<Element> Find(string selectorString)
+        public Element MainWindow
         {
-            return automationProvider.Find(selectorString);
+            get { return mainWindow; }
         }
 
-        public List<Element> WaitAndFind(string selectorString)
+        public static Application[] FromProcessName(string processName)
         {
-            return WaitAndFind(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
-        }
-
-        public virtual Element FindFirst(string selectorString)
-        {
-            List<Element> els = Find(selectorString);
-            if (els.Count == 0)
+            Process[] processes = Process.GetProcessesByName(processName);
+            List<Application> apps = new List<Application>();
+            foreach (Process process in processes)
             {
-                throw new ElementSearchException("No elements found");
+                apps.Add(new Application(process));
             }
-            return els[0];
-        }
-
-        public List<Element> WaitAndFind(string selectorString, int maximumWaitingTimeInSeconds)
-        {
-            int elaspedTime = 0;
-            while (true)
-            {
-                List<Element> elements = Find(selectorString);
-                if (elements.Count > 0)
-                {
-                    return elements;
-                }
-                if (elaspedTime > maximumWaitingTimeInSeconds*1000)
-                {
-                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no elements found");
-                }
-                Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
-                elaspedTime += WAIT_INTERVAL_IN_MILLIS;
-            }
-        }
-
-        public Element WaitAndFindFirst(string selectorString)
-        {
-            return WaitAndFindFirst(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
-        }
-
-        public Element WaitAndFindFirst(string selectorString, int maximumWaitingTimeInSeconds)
-        {
-            return WaitAndFind(selectorString, maximumWaitingTimeInSeconds)[0];
+            return apps.ToArray();
         }
     }
 }

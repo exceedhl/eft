@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
@@ -7,6 +8,9 @@ namespace Eft
 {
     public class Element
     {
+        private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
+        private const int WAIT_INTERVAL_IN_MILLIS = 100;
+
         private readonly IAutomationProvider provider;
 
         public Element(IAutomationProvider provider)
@@ -34,19 +38,9 @@ namespace Eft
             provider.Type(text);
         }
 
-        public List<Element> Find(Selector selector)
+        internal List<Element> Find(Selector selector)
         {
             return provider.Find(selector);
-        }
-
-        public List<Element> Find(string selector)
-        {
-            return provider.Find(selector);
-        }
-
-        public List<Element> FindChildren(SimpleSelector simpleSelector)
-        {
-            return provider.FindChildren(simpleSelector);
         }
 
         public Element FindFirst(string selectorString)
@@ -57,6 +51,50 @@ namespace Eft
                 throw new ElementSearchException("No elements found");
             }
             return els[0];
+        }
+
+        public List<Element> Find(string selector)
+        {
+            return provider.Find(selector);
+        }
+
+        internal List<Element> FindChildren(SimpleSelector simpleSelector)
+        {
+            return provider.FindChildren(simpleSelector);
+        }
+
+        public List<Element> WaitAndFind(string selectorString)
+        {
+            return WaitAndFind(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
+        }
+
+        public List<Element> WaitAndFind(string selectorString, int maximumWaitingTimeInSeconds)
+        {
+            int elaspedTime = 0;
+            while (true)
+            {
+                List<Element> elements = Find(selectorString);
+                if (elements.Count > 0)
+                {
+                    return elements;
+                }
+                if (elaspedTime > maximumWaitingTimeInSeconds*1000)
+                {
+                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no elements found");
+                }
+                Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
+                elaspedTime += WAIT_INTERVAL_IN_MILLIS;
+            }
+        }
+
+        public Element WaitAndFindFirst(string selectorString)
+        {
+            return WaitAndFindFirst(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
+        }
+
+        public Element WaitAndFindFirst(string selectorString, int maximumWaitingTimeInSeconds)
+        {
+            return WaitAndFind(selectorString, maximumWaitingTimeInSeconds)[0];
         }
     }
 }

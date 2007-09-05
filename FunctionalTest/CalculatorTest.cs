@@ -12,11 +12,11 @@ namespace FunctionalTest
             Application app = new Application("calc");
             app.Start();
 
-            app.FindFirst("Button[name='1']").Click();
-            app.FindFirst("*[name='+']").Click();
-            app.FindFirst("[name='2']").Click();
-            app.FindFirst("[name='=']").Click();
-            Element edit = app.FindFirst("Edit");
+            app.MainWindow.FindFirst("Button[name='1']").Click();
+            app.MainWindow.FindFirst("*[name='+']").Click();
+            app.MainWindow.FindFirst("[name='2']").Click();
+            app.MainWindow.FindFirst("[name='=']").Click();
+            Element edit = app.MainWindow.FindFirst("Edit");
             edit.Type("3333");
             app.Stop();
         }
