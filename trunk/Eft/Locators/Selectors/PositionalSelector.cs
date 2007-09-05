@@ -1,4 +1,4 @@
-namespace eft.Locators.Selectors
+namespace Eft.Locators.Selectors
 {
     public class PositionalSelector : Selector
     {

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using eft.Exception;
+using Eft.Exception;
 
-namespace eft.Locators.Selectors
+namespace Eft.Locators.Selectors
 {
     public class Parser : IParser
     {

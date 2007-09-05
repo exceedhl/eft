@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace eft.Locators.Selectors
+namespace Eft.Locators.Selectors
 {
     public class Scanner
     {

@@ -1,4 +1,4 @@
-namespace eft.Exception
+namespace Eft.Exception
 {
     public class SelectorTranslationException : System.Exception
     {

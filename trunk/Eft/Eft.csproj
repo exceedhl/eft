@@ -7,8 +7,8 @@
     <ProjectGuid>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>eft</RootNamespace>
-    <AssemblyName>eft</AssemblyName>
+    <RootNamespace>Eft</RootNamespace>
+    <AssemblyName>Eft</AssemblyName>
     <StartupObject>
     </StartupObject>
   </PropertyGroup>

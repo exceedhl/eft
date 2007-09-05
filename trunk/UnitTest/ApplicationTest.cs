@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using eft.Exception;
-using eft.Provider;
+using Eft.Exception;
+using Eft.Provider;
+using Eft.Util;
 using NUnit.Framework;
 using Rhino.Mocks;
-using test.Util;
 
-namespace eft
+namespace Eft
 {
     [TestFixture]
     public class ApplicationTest

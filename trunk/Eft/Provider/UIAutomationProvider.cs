@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
-using eft.Locators;
-using eft.Locators.Selectors;
-using eft.Win32;
+using Eft.Locators;
+using Eft.Locators.Selectors;
+using Eft.Win32;
 
-namespace eft.Provider
+namespace Eft.Provider
 {
     public class UIAutomationProvider : IAutomationProvider
     {

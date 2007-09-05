@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using eft.Locators.Selectors;
-using eft.Provider;
+using Eft.Locators.Selectors;
+using Eft.Provider;
 
-namespace eft
+namespace Eft
 {
     public class Element
     {

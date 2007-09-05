@@ -7,7 +7,7 @@
     <ProjectGuid>{05758BDC-0C54-478A-A788-9E879826F0A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>eft</RootNamespace>
+    <RootNamespace>Eft</RootNamespace>
     <AssemblyName>UnitTest</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -56,6 +56,12 @@
     <Compile Include="Locators\SelectorTranslatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\PrivateAccessor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eft\Eft.csproj">
+      <Project>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</Project>
+      <Name>Eft</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

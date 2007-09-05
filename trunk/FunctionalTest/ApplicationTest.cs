@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using eft;
-using eft.Win32;
+using Eft;
+using Eft.Win32;
 using NUnit.Framework;
 
 namespace FunctionalTest
