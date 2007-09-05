@@ -11,8 +11,8 @@ namespace FunctionalTest
         {
             Application app = new Application("calc");
             app.Start();
-            Assert.AreEqual(7, app.Find("RadioButton").Count);
-            Assert.AreEqual("Hex", app.FindFirst("RadioButton").Name);
+            Assert.AreEqual(7, app.MainWindow.Find("RadioButton").Count);
+            Assert.AreEqual("Hex", app.MainWindow.FindFirst("RadioButton").Name);
             app.Stop();
         }
 
@@ -21,18 +21,18 @@ namespace FunctionalTest
         {
             Application app = new Application("wordpad");
             app.Start();
-            app.FindFirst("MenuItem[name='Help']").Click();
-            app.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
+            app.MainWindow.FindFirst("MenuItem[name='Help']").Click();
+            app.MainWindow.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
 
-            Element aboutWindow = app.WaitAndFindFirst("Window[name='About WordPad']");
+            Element aboutWindow = app.MainWindow.WaitAndFindFirst("Window[name='About WordPad']");
             Assert.AreEqual("About WordPad", aboutWindow.Name);
             aboutWindow.FindFirst("Button").Click();
 
-            app.FindFirst("MenuItem[name='Help']").Click();
-            app.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
-            aboutWindow = app.WaitAndFind("Window[name='About WordPad']")[0];
-            Assert.AreEqual("About WordPad", aboutWindow.Name);
-            aboutWindow.FindFirst("Button").Click();
+            app.MainWindow.FindFirst("MenuItem[name='Help']").Click();
+            app.MainWindow.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
+            Element closeButton = app.MainWindow.WaitAndFind("Window[name='About WordPad'] Button")[0];
+            Assert.AreEqual("OK", closeButton.Name);
+            closeButton.Click();
 
             app.Stop();
         }

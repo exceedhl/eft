@@ -50,7 +50,6 @@
     <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationTest.cs" />
     <Compile Include="ElementTest.cs" />
     <Compile Include="Locators\Selectors\ParserTest.cs" />
     <Compile Include="Locators\SelectorTranslatorTest.cs" />
