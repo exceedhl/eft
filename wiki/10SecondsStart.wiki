@@ -1,0 +1,29 @@
+#summary getting to use Eft in a very short time!
+
+1 Prepare the enviroment (you know how to do it)
+
+2 write a unit test, with following:
+{{{
+
+Application app = Eft.Run("calc");
+Window main = app.MainWindow();
+
+Tester.Click("1");
+Tester.Click("+");
+Tester.Click("2");
+Tester.Click("=")
+
+Assert.AreEqual("3", main.TextField("#result").Text);
+
+}}}
+
+Or, 
+
+{{{
+
+Tester.Click("1", "+", "1", "=");
+Assert.AreEqual("3", main.TextField("#result").Text);
+
+}}}
+
+That's it!
