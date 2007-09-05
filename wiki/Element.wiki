@@ -1,14 +1,3 @@
 #summary Element definition
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
+In eft, *Element* is referred as the visual elements in the application that you want to manipulate. They are usually windows and controls such as Button, Window, ListView etc.
