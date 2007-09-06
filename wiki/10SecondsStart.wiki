@@ -5,8 +5,9 @@
 2 write a unit test, with following:
 {{{
 
-Application app = Eft.Run("calc");
-Window main = app.MainWindow();
+Application app = new Application("calc");
+app.Start();
+Element main = app.MainWindow;
 
 Tester.Click("1");
 Tester.Click("+");
