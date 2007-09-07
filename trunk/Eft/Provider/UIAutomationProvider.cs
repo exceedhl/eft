@@ -66,7 +66,14 @@ namespace Eft.Provider
 
         public void Click()
         {
-            Mouse.MoveToAndClick(automationElement.GetClickablePoint());
+            Mouse.MoveTo(automationElement.GetClickablePoint());
+            Mouse.Click(automationElement.GetClickablePoint());
+        }
+
+        public void RightClick()
+        {
+            Mouse.MoveTo(automationElement.GetClickablePoint());
+            Mouse.RightClick(automationElement.GetClickablePoint());
         }
 
         public void Type(string text)

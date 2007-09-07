@@ -23,5 +23,19 @@ namespace FunctionalTest
 
             app.Stop();
         }
+
+        [Test]
+        public void right_click()
+        {
+            Application app = new Application("wordpad");
+            app.Start();
+
+            Element window = app.MainWindow;
+            window.FindFirst(".RICHEDIT50W").RightClick();
+            // the context menu of wordpad is actually belongs to Desktop
+            // Assert.AreEqual("Font...", window.FindFirst("MenuItem#'Item 57696'").Name);
+
+            app.Stop();
+        }
     }
 }

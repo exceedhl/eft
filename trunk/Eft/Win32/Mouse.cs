@@ -28,13 +28,14 @@ namespace Eft.Win32
         /// This API does not work inside the secure execution environment.
         /// <exception cref="System.Security.Permissions.SecurityPermission"/>
         /// </outside_see>
-        public static void MoveToAndClick(AutomationElement el)
+        internal static void MoveToAndClick(AutomationElement el)
         {
             if (el == null)
             {
                 throw new ArgumentNullException("el");
             }
-            MoveToAndClick(el.GetClickablePoint());
+            MoveTo(el.GetClickablePoint());
+            Click(el.GetClickablePoint());
         }
 
         public static void SendMouseInput(int x, int y, int data, SendMouseInputFlags flags)
@@ -125,7 +126,7 @@ namespace Eft.Win32
         /// This API does not work inside the secure execution environment.
         /// <exception cref="System.Security.Permissions.SecurityPermission"/>
         /// </outside_see>
-        public static void MoveTo(AutomationElement el)
+        internal static void MoveTo(AutomationElement el)
         {
             if (el == null)
             {
@@ -149,36 +150,67 @@ namespace Eft.Win32
             SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.Move | SendMouseInputFlags.Absolute);
         }
 
-        /// <summary>
-        /// Move the mouse to a point and click.  The primary mouse button will be used
-        /// this is usually the left button except if the mouse buttons are swaped.
-        /// </summary>
-        /// <param name="pt">The point to click at</param>
-        /// <remarks>pt are in pixels that are relative to desktop origin.</remarks>
-        /// 
-        /// <outside_see conditional="false">
-        /// This API does not work inside the secure execution environment.
-        /// <exception cref="System.Security.Permissions.SecurityPermission"/>
-        /// </outside_see>
-        public static void MoveToAndClick(Point pt)
+        public static void LeftButtonDown(Point pt)
         {
-            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.Move | SendMouseInputFlags.Absolute);
+            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
+            }
+            else
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
+            }
+        }
 
+        public static void LeftButtonUp(Point pt)
+        {
             // send SendMouseInput works in term of the phisical mouse buttons, therefore we need
             // to check to see if the mouse buttons are swapped because this method need to use the primary
             // mouse button.
             if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
             {
-                // the mouse buttons are not swaped the primary is the left
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
                 SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftUp | SendMouseInputFlags.Absolute);
             }
             else
             {
-                // the mouse buttons are swaped so click the right button which as actually the primary
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
                 SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightUp | SendMouseInputFlags.Absolute);
             }
+        }
+
+        public static void RightButtonDown(Point pt)
+        {
+            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
+            }
+            else
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
+            }
+        }
+
+        public static void RightButtonUp(Point pt)
+        {
+            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightUp | SendMouseInputFlags.Absolute);
+            }
+            else
+            {
+                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftUp | SendMouseInputFlags.Absolute);
+            }
+        }
+
+        public static void Click(Point pt)
+        {
+            LeftButtonDown(pt);
+            LeftButtonUp(pt);
+        }
+
+        public static void RightClick(Point pt)
+        {
+            RightButtonDown(pt);
+            RightButtonUp(pt);
         }
 
         public static void Click(IntPtr wnd, Point point)
