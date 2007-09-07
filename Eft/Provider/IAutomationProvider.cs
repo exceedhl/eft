@@ -14,6 +14,7 @@ namespace Eft.Provider
         Point GetClickablePoint();
         void Focus();
         void Click();
+        void RightClick();
         void Type(string text);
         List<Element> Find(string selectorString);
         List<Element> Find(Selector selector);

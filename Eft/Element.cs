@@ -45,9 +45,25 @@ namespace Eft
             provider.Click();
         }
 
+        public void RightClick()
+        {
+            provider.RightClick();
+        }
+
         public void Type(string text)
         {
             provider.Type(text);
+        }
+
+        public void ClickAndType(string text)
+        {
+            Click();
+            provider.Type(text);
+        }
+
+        public void ClearText()
+        {
+            Type("{HOME}+{END}{DEL}");
         }
 
         internal List<Element> Find(Selector selector)
