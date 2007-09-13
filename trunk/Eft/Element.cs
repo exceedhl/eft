@@ -11,7 +11,7 @@ namespace Eft
         private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
         private const int WAIT_INTERVAL_IN_MILLIS = 100;
 
-        private readonly IAutomationProvider provider;
+        protected readonly IAutomationProvider provider;
 
         public Element(IAutomationProvider provider)
         {

@@ -54,9 +54,14 @@ namespace Eft.Provider
             }
         }
 
-        public Point GetClickablePoint()
+        public Point ClickablePoint
         {
-            return automationElement.GetClickablePoint();
+            get { return automationElement.GetClickablePoint(); }
+        }
+
+        public bool IsWindow
+        {
+            get { throw new System.NotImplementedException(); }
         }
 
         public void Focus()
