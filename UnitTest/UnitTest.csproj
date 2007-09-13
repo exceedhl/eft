@@ -55,6 +55,7 @@
     <Compile Include="Locators\SelectorTranslatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\PrivateAccessor.cs" />
+    <Compile Include="WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eft\Eft.csproj">

@@ -8,10 +8,11 @@ namespace Eft.Provider
     {
         string Name { get; }
         string Id { get; }
-
         string Text { get; }
+        Point ClickablePoint { get; }
 
-        Point GetClickablePoint();
+        bool IsWindow { get; }
+
         void Focus();
         void Click();
         void RightClick();

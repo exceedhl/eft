@@ -50,6 +50,11 @@ namespace Eft
             get { return mainWindow; }
         }
 
+        public Window FindWindow(string title)
+        {
+            return null;
+        }
+
         public static Application[] FromProcessName(string processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);
