@@ -13,5 +13,11 @@ namespace Eft.Provider
                 new UIAutomationProvider(AutomationElement.FromHandle(mainWindowHandle), new SelectorTranslator(),
                                          new Parser());
         }
+
+        public static IAutomationProvider FromAutomationElement(AutomationElement element)
+        {
+            return
+                new UIAutomationProvider(element, new SelectorTranslator(), new Parser());
+        }
     }
 }

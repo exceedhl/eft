@@ -34,7 +34,7 @@ namespace Eft
             Expect.Call(mockProvider.IsWindow).Return(true);
             mocks.ReplayAll();
             Window window = new Window(mockProvider);
-            Assert.IsInstanceOfType(typeof(Element), window);
+            Assert.IsInstanceOfType(typeof (Element), window);
             mocks.VerifyAll();
         }
     }

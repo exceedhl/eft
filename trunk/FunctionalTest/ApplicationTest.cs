@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using Eft;
-using Eft.Win32;
 using NUnit.Framework;
 
 namespace FunctionalTest
@@ -14,10 +13,18 @@ namespace FunctionalTest
         {
             Application app = new Application("wordpad");
             app.Start();
-
-            Assert.IsTrue(APIWrapper.FindWindow("WordPadClass", "Document - WordPad") > 0);
+            Assert.AreEqual("Document - WordPad", app.FindTopWindows()[0].Name);
             app.Stop();
-            Assert.IsTrue(APIWrapper.FindWindow("WordPadClass", "Document - WordPad") == 0);
+        }
+
+        [Test]
+        public void should_wait_for_app_window_to_be_ready_to_interact()
+        {
+            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
+            Application app = new Application(fileName);
+            app.Start();
+            Assert.IsNotNull(app.FindTopWindow("Stub"));
+            app.Stop();
         }
 
         [Test]
@@ -25,15 +32,7 @@ namespace FunctionalTest
         {
             Application app = new Application("cmd");
             app.Start();
-            try
-            {
-                app.MainWindow.FindFirst("*");
-                Assert.Fail("exception expected");
-            }
-            catch (NullReferenceException)
-            {
-                // pass
-            }
+            Assert.AreEqual(@"C:\WINDOWS\system32\cmd.exe", app.FindTopWindows()[0].Name);
             app.Stop();
         }
 
@@ -46,7 +45,7 @@ namespace FunctionalTest
             p.WaitForInputIdle(3000);
 
             Application app = Application.FromProcessName("notepad")[0];
-            Assert.AreEqual("Untitled - Notepad", app.MainWindow.Name);
+            Assert.AreEqual("Untitled - Notepad", app.FindTopWindows()[0].Name);
 
             app.Stop();
         }

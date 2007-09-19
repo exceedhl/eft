@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="Desktop.cs" />
     <Compile Include="Exception\ControlTypeConversionException.cs" />
     <Compile Include="Exception\ElementSearchException.cs" />
     <Compile Include="Exception\SelectorParsingException.cs" />

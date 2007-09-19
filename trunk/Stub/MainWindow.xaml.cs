@@ -4,15 +4,19 @@ namespace stub
 {
     public partial class MainWindow
     {
+        private static int windowCount = 0;
+
         public MainWindow()
         {
             InitializeComponent();
-            button.Click += button_Click;
+            openNewWindow.Click += OnOpenNewWindow;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private static void OnOpenNewWindow(object sender, RoutedEventArgs e)
         {
-            new SubWindow().Show();
+            NewWindow window = new NewWindow();
+            window.Title = "new window " + windowCount++;
+            window.Show();
         }
     }
 }

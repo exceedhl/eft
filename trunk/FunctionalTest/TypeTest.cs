@@ -12,7 +12,7 @@ namespace FunctionalTest
             Application app = new Application("wordpad");
             app.Start();
 
-            Element window = app.MainWindow;
+            Element window = app.FindTopWindows()[0];
             Element editor = window.FindFirst(".RICHEDIT50W");
             editor.ClickAndType("hello, world");
             Assert.AreEqual("hello, world\r", editor.Text);

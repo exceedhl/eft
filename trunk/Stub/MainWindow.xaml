@@ -3,6 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     Title="Stub">
   <StackPanel>
-    <Button x:Name="button">Open another window</Button>
+    <Button x:Name="openNewWindow">Open new window</Button>
   </StackPanel>
 </Window>
