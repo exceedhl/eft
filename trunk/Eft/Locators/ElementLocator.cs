@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Eft.Elements;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;

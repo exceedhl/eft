@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Eft;
+using Eft.Elements;
 using NUnit.Framework;
 
 namespace FunctionalTest
