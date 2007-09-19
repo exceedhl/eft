@@ -1,15 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Eft.Provider;
+using System.Threading;
+using Eft.Exception;
 
 namespace Eft
 {
     public class Application
     {
         private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
+        private const int WAIT_INTERVAL_IN_MILLIS = 100;
+
         private readonly Process process;
-        private Element mainWindow;
 
         public Application(string fileName)
         {
@@ -20,21 +21,11 @@ namespace Eft
         public Application(Process process)
         {
             this.process = process;
-            mainWindow = new Element(AutomationProviderFactory.FromHandle(process.MainWindowHandle));
         }
 
         public void Start()
         {
             process.Start();
-            try
-            {
-                process.WaitForInputIdle(MAXIMUM_WAIT_TIME_IN_SEC*1000);
-                mainWindow = new Element(AutomationProviderFactory.FromHandle(process.MainWindowHandle));
-            }
-            catch (InvalidOperationException)
-            {
-                // the app does not have a graphical interface
-            }
         }
 
         public void Stop()
@@ -45,14 +36,55 @@ namespace Eft
             }
         }
 
-        public Element MainWindow
+        public List<Window> FindTopWindows(int maximumWaitingTimeInSeconds)
         {
-            get { return mainWindow; }
+            int elaspedTime = 0;
+            while (true)
+            {
+                List<Window> windows = Desktop.FindTopWindowsByProcessId(process.Id);
+                if (windows.Count > 0)
+                {
+                    return windows;
+                }
+                if (elaspedTime > maximumWaitingTimeInSeconds*1000)
+                {
+                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no window found");
+                }
+                Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
+                elaspedTime += WAIT_INTERVAL_IN_MILLIS;
+            }
         }
 
-        public Window FindWindow(string title)
+        public List<Window> FindTopWindows()
         {
-            return null;
+            return FindTopWindows(MAXIMUM_WAIT_TIME_IN_SEC);
+        }
+
+        public Window FindTopWindow(string title, int maximumWaitingTimeInSeconds)
+        {
+            int elaspedTime = 0;
+            while (true)
+            {
+                List<Window> windows = Desktop.FindTopWindowsByProcessId(process.Id);
+                foreach (Window window in windows)
+                {
+                    if (window.Name == title)
+                    {
+                        return window;
+                    }
+                }
+                if (elaspedTime > maximumWaitingTimeInSeconds*1000)
+                {
+                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no window found");
+                }
+                Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
+                elaspedTime += WAIT_INTERVAL_IN_MILLIS;
+            }
+        }
+
+        public Window FindTopWindow(string title)
+        {
+            return FindTopWindow(title, MAXIMUM_WAIT_TIME_IN_SEC);
         }
 
         public static Application[] FromProcessName(string processName)

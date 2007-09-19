@@ -7,6 +7,7 @@ using NUnit.Framework;
 namespace FunctionalTest
 {
     [TestFixture]
+    [Ignore]
     public class EvolveTest
     {
         [Test]
@@ -22,7 +23,7 @@ namespace FunctionalTest
             Application client = new Application(clientProcess);
 
 
-            Element launcherWindow = client.MainWindow;
+            Element launcherWindow = client.FindTopWindows()[0];
             launcherWindow.FindFirst("#btnLaunchContactList").Click();
             AutomationElement win = AutomationElement.FromHandle(clientProcess.MainWindowHandle);
             AutomationElementCollection winds =

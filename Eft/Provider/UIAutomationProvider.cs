@@ -61,7 +61,11 @@ namespace Eft.Provider
 
         public bool IsWindow
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                return
+                    (bool) automationElement.GetCurrentPropertyValue(AutomationElement.IsWindowPatternAvailableProperty);
+            }
         }
 
         public void Focus()

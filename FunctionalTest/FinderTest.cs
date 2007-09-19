@@ -1,3 +1,4 @@
+using System;
 using Eft;
 using NUnit.Framework;
 
@@ -11,8 +12,9 @@ namespace FunctionalTest
         {
             Application app = new Application("calc");
             app.Start();
-            Assert.AreEqual(7, app.MainWindow.Find("RadioButton").Count);
-            Assert.AreEqual("Hex", app.MainWindow.FindFirst("RadioButton").Name);
+            Window window = app.FindTopWindows()[0];
+            Assert.AreEqual(7, window.Find("RadioButton").Count);
+            Assert.AreEqual("Hex", window.FindFirst("RadioButton").Name);
             app.Stop();
         }
 
@@ -21,19 +23,34 @@ namespace FunctionalTest
         {
             Application app = new Application("wordpad");
             app.Start();
-            app.MainWindow.FindFirst("MenuItem[name='Help']").Click();
-            app.MainWindow.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
+            Window window = app.FindTopWindows()[0];
+            window.FindFirst("MenuItem[name='Help']").Click();
+            window.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
 
-            Element aboutWindow = app.MainWindow.WaitAndFindFirst("Window[name='About WordPad']");
+            Element aboutWindow = window.WaitAndFindFirst("Window[name='About WordPad']");
             Assert.AreEqual("About WordPad", aboutWindow.Name);
             aboutWindow.FindFirst("Button").Click();
 
-            app.MainWindow.FindFirst("MenuItem[name='Help']").Click();
-            app.MainWindow.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
-            Element closeButton = app.MainWindow.WaitAndFind("Window[name='About WordPad'] Button")[0];
+            window.FindFirst("MenuItem[name='Help']").Click();
+            window.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
+            Element closeButton = window.WaitAndFind("Window[name='About WordPad'] Button")[0];
             Assert.AreEqual("OK", closeButton.Name);
             closeButton.Click();
 
+            app.Stop();
+        }
+
+        [Test]
+        public void find_top_windows()
+        {
+            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
+            Application app = new Application(fileName);
+            app.Start();
+            Window mainWindow = app.FindTopWindow("Stub");
+            mainWindow.FindFirst("#openNewWindow").Click();
+            mainWindow.FindFirst("#openNewWindow").Click();
+            Assert.IsNotNull(app.FindTopWindow("new window 0"));
+            Assert.IsNotNull(app.FindTopWindow("new window 1"));
             app.Stop();
         }
     }

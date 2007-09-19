@@ -13,7 +13,7 @@ namespace FunctionalTest
             Application app = new Application("calc");
             app.Start();
 
-            Element window = app.MainWindow;
+            Element window = app.FindTopWindows()[0];
             window.FindFirst("Button[name='1']").Click();
             window.FindFirst("*[name='+']").Click();
             window.FindFirst("[name='2']").Click();
@@ -30,7 +30,7 @@ namespace FunctionalTest
             Application app = new Application("wordpad");
             app.Start();
 
-            Element window = app.MainWindow;
+            Element window = app.FindTopWindows()[0];
             window.FindFirst(".RICHEDIT50W").RightClick();
             // the context menu of wordpad is actually belongs to Desktop
             // Assert.AreEqual("Font...", window.FindFirst("MenuItem#'Item 57696'").Name);
