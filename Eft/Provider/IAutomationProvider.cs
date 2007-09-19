@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows;
+using Eft.Elements;
 using Eft.Locators.Selectors;
 
 namespace Eft.Provider
@@ -12,6 +13,8 @@ namespace Eft.Provider
         Point ClickablePoint { get; }
 
         bool IsWindow { get; }
+        void ChangeWindowState(WindowState windowState);
+        WindowState WindowState { get; }
 
         void Focus();
         void Click();

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using Eft.Elements;
 using Eft.Locators;
 using Eft.Locators.Selectors;
 using Eft.Win32;
@@ -68,6 +69,23 @@ namespace Eft.Provider
             }
         }
 
+        public void ChangeWindowState(WindowState windowState)
+        {
+            WindowPattern pattern = (WindowPattern) automationElement.GetCurrentPattern(WindowPattern.Pattern);
+            switch (windowState)
+            {
+                case WindowState.Maximized:
+                    pattern.SetWindowVisualState(WindowVisualState.Maximized);
+                    break;
+                case WindowState.Minimized:
+                    pattern.SetWindowVisualState(WindowVisualState.Minimized);
+                    break;
+                default:
+                    pattern.SetWindowVisualState(WindowVisualState.Normal);
+                    break;
+            }
+        }
+
         public void Focus()
         {
             automationElement.SetFocus();
@@ -104,6 +122,23 @@ namespace Eft.Provider
         public List<Element> Find(SimpleSelector simpleSelector)
         {
             return FindFrom(simpleSelector, TreeScope.Descendants);
+        }
+
+        public WindowState WindowState
+        {
+            get
+            {
+                WindowPattern pattern = (WindowPattern) automationElement.GetCurrentPattern(WindowPattern.Pattern);
+                switch (pattern.Current.WindowVisualState)
+                {
+                    case WindowVisualState.Maximized:
+                        return WindowState.Maximized;
+                    case WindowVisualState.Minimized:
+                        return WindowState.Minimized;
+                    default:
+                        return WindowState.Normal;
+                }
+            }
         }
 
         public List<Element> FindChildren(SimpleSelector simpleSelector)

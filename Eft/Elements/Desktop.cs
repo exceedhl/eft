@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Windows.Automation;
 using Eft.Provider;
 
-namespace Eft
+namespace Eft.Elements
 {
     public class Desktop
     {

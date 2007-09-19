@@ -1,7 +1,5 @@
-using System.Diagnostics;
-using System.Threading;
-using System.Windows.Automation;
 using Eft;
+using Eft.Elements;
 using NUnit.Framework;
 
 namespace FunctionalTest
@@ -21,11 +19,11 @@ namespace FunctionalTest
 
             Element launcherWindow = client.FindTopWindow("Launcher Window");
             launcherWindow.FindFirst("#btnLaunchContactList").Click();
-            
+
             Element contactListWindow = client.FindTopWindow("My contact list");
             contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
-            contactListWindow.FindFirst("#tbKeywords").ClickAndType("rog");
-            contactListWindow.FindFirst("[name='Rogerio']").Click();
+            contactListWindow.Find("#tbKeywords")[1].ClickAndType("rog");
+            contactListWindow.WaitAndFindFirst("#contactsUsersTabControl [name='Rogerio']").Click();
             contactListWindow.FindFirst("#btnAddSelectedContact").Click();
 
             client.Stop();
