@@ -10,6 +10,13 @@ namespace stub
         {
             InitializeComponent();
             openNewWindow.Click += OnOpenNewWindow;
+            openTextTestWindow.Click += OnOpenTextTestWindow;
+        }
+
+        private static void OnOpenTextTestWindow(object sender, RoutedEventArgs e)
+        {
+            TextTestWindow window = new TextTestWindow();
+            window.Show();
         }
 
         private static void OnOpenNewWindow(object sender, RoutedEventArgs e)

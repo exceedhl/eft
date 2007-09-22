@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
@@ -38,6 +39,11 @@ namespace Eft.Elements
                 }
                 return provider.Name;
             }
+        }
+
+        public Point ClickablePoint
+        {
+            get { return provider.ClickablePoint; }
         }
 
         public void Click()
@@ -123,6 +129,11 @@ namespace Eft.Elements
         public Element WaitAndFindFirst(string selectorString, int maximumWaitingTimeInSeconds)
         {
             return WaitAndFind(selectorString, maximumWaitingTimeInSeconds)[0];
+        }
+
+        public void Focus()
+        {
+            provider.Focus();
         }
     }
 }
