@@ -1,0 +1,33 @@
+﻿<Window x:Class="stub.TextTestWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="text test window" Height="300" Width="300"
+    >
+  <DockPanel>
+    <GroupBox DockPanel.Dock="Left" Header="group box" Name="groupBox">
+      <StackPanel>
+        <TextBlock Name="textBlock">text block</TextBlock>
+        <TextBox Name="textBox">text box</TextBox>
+        <Label Name="label">label value</Label>
+        <Button Name="button" Content="ok button">
+          <Button.ToolTip>
+            <ToolTip Name="tooltip">tool tip</ToolTip>
+          </Button.ToolTip>
+        </Button>
+        <CheckBox Name="checkBox">check box</CheckBox>
+        <RadioButton Name="radioButton">radio button</RadioButton>
+        <Expander Header="expander header" Name="expander"/>
+
+        <ComboBox>
+          <ComboBoxItem Name="comboBoxItem">item 1</ComboBoxItem>
+        </ComboBox>
+
+        <ListBox>
+          <ListBoxItem Name="listBoxItem">list box item</ListBoxItem>
+        </ListBox>
+        
+        
+      </StackPanel>
+    </GroupBox>
+  </DockPanel>
+</Window>
