@@ -11,8 +11,7 @@ namespace FunctionalTest
         [Test]
         public void simple_selector()
         {
-            Application app = new Application("wordpad");
-            app.Start();
+            Application app = Application.Run("wordpad");
 
             Window window = app.FindTopWindows()[0];
             List<Element> els = window.Find("#'Item 2'");
@@ -25,8 +24,7 @@ namespace FunctionalTest
 
             app.Stop();
 
-            app = new Application("calc");
-            app.Start();
+            app = Application.Run("calc");
 
             window = app.FindTopWindows()[0];
             List<Element> button1 = window.Find("[name='1']");
@@ -42,8 +40,7 @@ namespace FunctionalTest
         [Test]
         public void and_selector()
         {
-            Application app = new Application("calc");
-            app.Start();
+            Application app = Application.Run("calc");
             Element window = app.FindTopWindows()[0];
             Assert.AreEqual("0", window.FindFirst("[name='0']").Name);
             Assert.AreEqual("0", window.FindFirst("#124").Name);
@@ -55,8 +52,7 @@ namespace FunctionalTest
         [Test]
         public void positional_pseudo_selector()
         {
-            Application app = new Application("calc");
-            app.Start();
+            Application app = Application.Run("calc");
             Element window = app.FindTopWindows()[0];
             Assert.AreEqual("Hex", window.FindFirst("RadioButton:first-of-type").Name);
             Assert.AreEqual("Hex", window.FindFirst("RadioButton:nth-of-type(0)").Name);
@@ -68,8 +64,7 @@ namespace FunctionalTest
         [Test]
         public void combination_selector()
         {
-            Application app = new Application("wordpad");
-            app.Start();
+            Application app = Application.Run("wordpad");
             Element window = app.FindTopWindows()[0];
             Assert.AreEqual("1001", window.FindFirst("ToolBar[name='Formatting'] Edit:first-of-type").Id);
             Assert.AreEqual("Item 57600", window.FindFirst("ToolBar[name='Standard'] Button").Id);

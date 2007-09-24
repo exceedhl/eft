@@ -82,7 +82,7 @@ namespace Eft.Elements
             List<Element> els = Find(selectorString);
             if (els.Count == 0)
             {
-                throw new ElementSearchException("No elements found");
+                throw new ElementSearchException("No elements found: " + selectorString);
             }
             return els[0];
         }
@@ -114,7 +114,7 @@ namespace Eft.Elements
                 }
                 if (elaspedTime > maximumWaitingTimeInSeconds*1000)
                 {
-                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no elements found");
+                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no elements found: " + selectorString);
                 }
                 Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
                 elaspedTime += WAIT_INTERVAL_IN_MILLIS;

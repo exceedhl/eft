@@ -13,20 +13,33 @@ namespace Eft
 
         private readonly Process process;
 
-        public Application(string fileName)
+        private Application(string fileName)
         {
             process = new Process();
             process.StartInfo.FileName = fileName;
+            process.Start();
         }
 
-        public Application(Process process)
+        private Application(Process process)
         {
             this.process = process;
         }
 
-        public void Start()
+        public static Application[] AttachProcess(string processName)
         {
-            process.Start();
+            Process[] processes = Process.GetProcessesByName(processName);
+            List<Application> apps = new List<Application>();
+            foreach (Process process in processes)
+            {
+                apps.Add(new Application(process));
+            }
+            return apps.ToArray();
+        }
+
+        public static Application Run(string executable)
+        {
+            Application application = new Application(executable);
+            return application;
         }
 
         public void Stop()
@@ -86,17 +99,6 @@ namespace Eft
         public Window FindTopWindow(string title)
         {
             return FindTopWindow(title, MAXIMUM_WAIT_TIME_IN_SEC);
-        }
-
-        public static Application[] FromProcessName(string processName)
-        {
-            Process[] processes = Process.GetProcessesByName(processName);
-            List<Application> apps = new List<Application>();
-            foreach (Process process in processes)
-            {
-                apps.Add(new Application(process));
-            }
-            return apps.ToArray();
         }
     }
 }

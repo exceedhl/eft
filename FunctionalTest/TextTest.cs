@@ -16,8 +16,7 @@ namespace FunctionalTest
         public void setup()
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
-            app = new Application(fileName);
-            app.Start();
+            app = Application.Run(fileName);
             Window mainWindow = app.FindTopWindow("Stub");
             mainWindow.FindFirst("#openTextTestWindow").Click();
             window = app.FindTopWindow("text test window");
@@ -26,8 +25,7 @@ namespace FunctionalTest
         [Test]
         public void type_text()
         {
-            Application wordpad = new Application("wordpad");
-            wordpad.Start();
+            Application wordpad = Application.Run("wordpad");
 
             Element mainwindow = wordpad.FindTopWindows()[0];
             Element editor = mainwindow.FindFirst(".RICHEDIT50W");

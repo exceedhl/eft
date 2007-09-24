@@ -11,11 +11,8 @@ namespace FunctionalTest
         [Test]
         public void spike()
         {
-            Application server =
-                new Application(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
-            server.Start();
-            Application client = new Application(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
-            client.Start();
+            Application server = Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
+            Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
 
             Element launcherWindow = client.FindTopWindow("Launcher Window");
             launcherWindow.FindFirst("#btnLaunchContactList").Click();
