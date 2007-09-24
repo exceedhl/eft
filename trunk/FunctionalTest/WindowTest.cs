@@ -14,8 +14,7 @@ namespace FunctionalTest
         public void setup()
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
-            app = new Application(fileName);
-            app.Start();
+            app = Application.Run(fileName);
         }
 
         [Test]

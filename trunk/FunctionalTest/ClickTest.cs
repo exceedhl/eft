@@ -11,8 +11,7 @@ namespace FunctionalTest
         [Test]
         public void left_click()
         {
-            Application app = new Application("calc");
-            app.Start();
+            Application app = Application.Run("calc");
 
             Element window = app.FindTopWindows()[0];
             window.FindFirst("Button[name='1']").Click();
@@ -28,8 +27,7 @@ namespace FunctionalTest
         [Test]
         public void right_click()
         {
-            Application app = new Application("wordpad");
-            app.Start();
+            Application app = Application.Run("wordpad");
 
             Element window = app.FindTopWindows()[0];
             window.FindFirst(".RICHEDIT50W").RightClick();

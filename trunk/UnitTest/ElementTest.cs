@@ -56,7 +56,7 @@ namespace Eft
         }
 
         [Test]
-        [ExpectedException(typeof (ElementSearchException), "No elements found")]
+        [ExpectedException(typeof (ElementSearchException), "No elements found: selector string")]
         public void find_first_should_return_null_if_nothing_found()
         {
             List<Element> returnedElements = new List<Element>();
@@ -79,7 +79,7 @@ namespace Eft
         }
 
         [Test]
-        [ExpectedException(typeof (ElementSearchException))]
+        [ExpectedException(typeof(ElementSearchException), "1 seconds elapsed, no elements found: selector")]
         public void wait_and_find_should_throw_exception_if_wait_time_out()
         {
             Expect.Call(mockAutoProvider.Find("selector")).Return(new List<Element>()).Repeat.Any();

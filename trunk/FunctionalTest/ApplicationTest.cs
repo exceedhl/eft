@@ -11,8 +11,7 @@ namespace FunctionalTest
         [Test]
         public void start_and_stop_application()
         {
-            Application app = new Application("wordpad");
-            app.Start();
+            Application app = Application.Run("wordpad");
             Assert.AreEqual("Document - WordPad", app.FindTopWindows()[0].Name);
             app.Stop();
         }
@@ -21,8 +20,7 @@ namespace FunctionalTest
         public void should_wait_for_app_window_to_be_ready_to_interact()
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
-            Application app = new Application(fileName);
-            app.Start();
+            Application app = Application.Run(fileName);
             Assert.IsNotNull(app.FindTopWindow("Stub"));
             app.Stop();
         }
@@ -30,8 +28,7 @@ namespace FunctionalTest
         [Test]
         public void start_cmd_process()
         {
-            Application app = new Application("cmd");
-            app.Start();
+            Application app = Application.Run("cmd");
             Assert.AreEqual(@"C:\WINDOWS\system32\cmd.exe", app.FindTopWindows()[0].Name);
             app.Stop();
         }
@@ -44,7 +41,7 @@ namespace FunctionalTest
             p.Start();
             p.WaitForInputIdle(3000);
 
-            Application app = Application.FromProcessName("notepad")[0];
+            Application app = Application.AttachProcess("notepad")[0];
             Assert.AreEqual("Untitled - Notepad", app.FindTopWindows()[0].Name);
 
             app.Stop();
