@@ -1,0 +1,9 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+All the under-going issues are list in this page. Should be done in next release
+
+* FinderTest#find_all_and_first, sometimes it fails due to running too fast to find the radio buttons.
+
+ 
