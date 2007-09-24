@@ -5,16 +5,17 @@
 2 write a unit test, with following:
 {{{
 
-Application app = new Application("calc");
-app.Start();
-Element main = app.MainWindow;
+Application app = Application.Run("calc");
+Element main = app.FindTopWindow();
 
-Tester.Click("1");
-Tester.Click("+");
-Tester.Click("2");
-Tester.Click("=")
+Tester tester = new Tester(app);
 
-Assert.AreEqual("3", main.TextField("#result").Text);
+tester.Click("1");
+tester.Click("+");
+tester.Click("2");
+tester.Click("=")
+
+Assert.AreEqual("3", main.Find("#result").Text);
 
 }}}
 
@@ -23,8 +24,9 @@ Or,
 {{{
 
 Tester.Click("1", "+", "1", "=");
-Assert.AreEqual("3", main.TextField("#result").Text);
+Assert.AreEqual("3", main.Find("#result").Text);
 
 }}}
 
 That's it!
+ 
