@@ -1,14 +1,12 @@
-# potential requirements
-
-= Introduction =
-
-All the under-going issues are list in this page. Should be done in next release
+#summary potential requirements
 
 * {{{FinderTest#find_all_and_first}}}
+ sometimes it fails due to running too fast to find the radio buttons.
 
-sometimes it fails due to running too fast to find the radio buttons.
 
- 
+* always wait to find elements?
+* wait an operation finished
+* using callback to find windows in a customized way
  
  
  
