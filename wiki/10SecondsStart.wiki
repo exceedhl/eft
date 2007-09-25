@@ -3,7 +3,7 @@
 1 Prepare the enviroment (you know how to do it)
 
 2 write a unit test, with following:
-{{{
+~~{{{
 
 Application app = Application.Run("calc");
 Element main = app.FindTopWindow();
@@ -26,7 +26,8 @@ Or,
 Tester.Click("1", "+", "1", "=");
 Assert.AreEqual("3", main.Find("#result").Text);
 
-}}}
+}}}~~
 
 That's it!
+ 
  
