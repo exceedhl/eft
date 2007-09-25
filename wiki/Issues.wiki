@@ -50,8 +50,7 @@ problems:
 
 why providing a fit like scripting language:
  * easy to use for non programmer
- * make it easy to integrate at a higher level
-  (command line tool, writing and running tests without visual studio like tools, easy to deploy tests)
+ * make it easy to integrate at a higher level (command line tool, writing and running tests without visual studio like tools, easy to deploy tests)
 
 benefits from eft:
  * reduce the necessity and complexity of encapsulation by end users
@@ -61,6 +60,7 @@ benefits from eft:
  * high level api, fit like scripting language, friendly for non programmers
  * build upon .net, supporting many languages
   ** use ruby.net to write your dsls
+ 
  
  
  
