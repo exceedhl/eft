@@ -1,12 +1,13 @@
 #summary potential requirements
 
-* {{{FinderTest#find_all_and_first}}}
+ * {{{FinderTest#find_all_and_first}}}
  sometimes it fails due to running too fast to find the radio buttons.
 
 
-* always wait to find elements?
-* wait an operation finished
-* using callback to find windows in a customized way
+ * always wait to find elements?
+ * wait an operation finished
+ * using callback to find windows in a customized way
+ 
  
  
  
