@@ -20,6 +20,7 @@ namespace Eft.Provider
 
         void Focus();
         void Click();
+        void Click(Point point);
         void RightClick();
         void Type(string text);
         List<Element> Find(string selectorString);

@@ -47,6 +47,12 @@ namespace Eft.Elements
             get { return provider.ClickablePoint; }
         }
 
+        public void DbClick()
+        {
+            Click();
+            Click();
+        }
+
         public void Click()
         {
             provider.Click();
@@ -61,7 +67,7 @@ namespace Eft.Elements
             {
                 throw new IllegalParameterException("Specified click point is out of element's bounding rectangle");
             }
-            Mouse.MoveToAndClick(point);
+            provider.Click(point);
         }
 
         public void RightClick()
@@ -133,12 +139,6 @@ namespace Eft.Elements
         public void Focus()
         {
             provider.Focus();
-        }
-
-        public void DbClick()
-        {
-            Click();
-            Click();
         }
     }
 }

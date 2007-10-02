@@ -97,6 +97,11 @@ namespace Eft.Provider
             Mouse.MoveToAndClick(automationElement.GetClickablePoint());
         }
 
+        public void Click(Point point)
+        {
+            Mouse.MoveToAndClick(point);
+        }
+
         public void RightClick()
         {
             Mouse.MoveTo(automationElement.GetClickablePoint());
