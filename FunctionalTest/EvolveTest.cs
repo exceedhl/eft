@@ -11,7 +11,8 @@ namespace FunctionalTest
         [Test]
         public void spike()
         {
-            Application server = Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
+            Application server =
+                Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
             Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
 
             Element launcherWindow = client.FindTopWindow("Launcher Window");
@@ -19,8 +20,6 @@ namespace FunctionalTest
 
             Element contactListWindow = client.FindTopWindow("My contact list");
             contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
-//            contactListWindow.Find("#tbKeywords")[1].ClickAndType("rog");
-            // The following line does not work
             contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
             contactListWindow.WaitAndFindFirst("#contactsUsersTabControl [name='Rogerio']").Click();
             contactListWindow.FindFirst("#btnAddSelectedContact").Click();

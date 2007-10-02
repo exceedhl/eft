@@ -16,6 +16,8 @@ namespace Eft.Provider
         void ChangeWindowState(WindowState windowState);
         WindowState WindowState { get; }
 
+        Rect BoundingRectangle { get; }
+
         void Focus();
         void Click();
         void RightClick();

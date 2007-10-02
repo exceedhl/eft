@@ -61,6 +61,8 @@
     <Compile Include="Elements\WindowState.cs" />
     <Compile Include="Exception\ControlTypeConversionException.cs" />
     <Compile Include="Exception\ElementSearchException.cs" />
+    <Compile Include="Exception\IllegalParameterException.cs" />
+    <Compile Include="Exception\NotSupportedPropertyException.cs" />
     <Compile Include="Exception\SelectorParsingException.cs" />
     <Compile Include="Exception\SelectorTranslationException.cs" />
     <Compile Include="Locators\ControlTypeSearcher.cs" />
