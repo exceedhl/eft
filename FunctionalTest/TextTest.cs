@@ -49,10 +49,10 @@ namespace FunctionalTest
             Assert.AreEqual("check box", window.FindFirst("#checkBox").Text);
             Assert.AreEqual("radio button", window.FindFirst("#radioButton").Text);
             Mouse.MoveTo(window.FindFirst("#button").ClickablePoint);
-            Assert.AreEqual("tool tip", window.WaitAndFindFirst("#tooltip").Text);
-            Assert.AreEqual("expander header", window.WaitAndFindFirst("#expander").Text);
-            Assert.AreEqual("item 1", window.WaitAndFindFirst("#comboBoxItem").Text);
-            Assert.AreEqual("list box item", window.WaitAndFindFirst("#listBoxItem").Text);
+            Assert.AreEqual("tool tip", window.FindFirst("#tooltip").Text);
+            Assert.AreEqual("expander header", window.FindFirst("#expander").Text);
+            Assert.AreEqual("item 1", window.FindFirst("#comboBoxItem").Text);
+            Assert.AreEqual("list box item", window.FindFirst("#listBoxItem").Text);
         }
 
         [Test]
