@@ -73,5 +73,15 @@ namespace Eft
             element.Click(11, 11);
             mocks.VerifyAll();
         }
+
+        [Test]
+        public void should_call_provider_click_to_click_some_point()
+        {
+            Expect.Call(mockProvider.BoundingRectangle).Return(new Rect(10, 10, 10, 10));
+            mockProvider.Click(new Point(15, 15));
+            mocks.ReplayAll();
+            element.Click(5, 5);
+            mocks.VerifyAll();
+        }
     }
 }
