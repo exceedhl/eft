@@ -11,6 +11,8 @@ namespace Eft.Win32
         WM_MOUSEMOVE = 0x0200,
         WM_LBUTTONDOWN = 0x0201,
         WM_LBUTTONUP = 0x202,
+        WM_SETCURSOR = 0x20,
+        WM_MOUSEACTIVATE = 0x21,
         WM_COMMAND = 0x111
     }
 

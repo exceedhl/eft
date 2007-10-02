@@ -55,11 +55,16 @@
       <SubType>Code</SubType>
       <DependentUpon>TextTestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClickTestWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ClickTestWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="NewWindow.xaml" />
     <Page Include="TextTestWindow.xaml" />
+    <Page Include="ClickTestWindow.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildBinPath)\Microsoft.WinFX.targets" />

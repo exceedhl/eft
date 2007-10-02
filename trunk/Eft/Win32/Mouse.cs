@@ -34,8 +34,15 @@ namespace Eft.Win32
             {
                 throw new ArgumentNullException("el");
             }
-            MoveTo(el.GetClickablePoint());
-            Click(el.GetClickablePoint());
+            Point clickablePoint = el.GetClickablePoint();
+            MoveTo(clickablePoint);
+            Click(clickablePoint);
+        }
+
+        public static void MoveToAndClick(Point point)
+        {
+            MoveTo(point);
+            Click(point);
         }
 
         public static void SendMouseInput(int x, int y, int data, SendMouseInputFlags flags)
@@ -215,6 +222,10 @@ namespace Eft.Win32
 
         public static void Click(IntPtr wnd, Point point)
         {
+            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_SETCURSOR, 0, 0x02000001);
+            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_MOUSEACTIVATE, 0, 0x02010001);
+            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_SETCURSOR, 0, 0x02000001);
+            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_LBUTTONDOWN, 0, ref point);
             APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_LBUTTONUP, 0, ref point);
         }
 

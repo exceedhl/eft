@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using Eft;
 using Eft.Elements;
 using NUnit.Framework;

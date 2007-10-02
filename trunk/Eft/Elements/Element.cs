@@ -4,6 +4,7 @@ using System.Windows;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
+using Eft.Win32;
 
 namespace Eft.Elements
 {
@@ -49,6 +50,18 @@ namespace Eft.Elements
         public void Click()
         {
             provider.Click();
+        }
+
+        public void Click(int x, int y)
+        {
+            Rect boundingRect = provider.BoundingRectangle;
+            Point point = boundingRect.TopLeft;
+            point.Offset(x, y);
+            if (!boundingRect.Contains(point))
+            {
+                throw new IllegalParameterException("Specified click point is out of element's bounding rectangle");
+            }
+            Mouse.MoveToAndClick(point);
         }
 
         public void RightClick()
@@ -114,7 +127,8 @@ namespace Eft.Elements
                 }
                 if (elaspedTime > maximumWaitingTimeInSeconds*1000)
                 {
-                    throw new ElementSearchException(maximumWaitingTimeInSeconds + " seconds elapsed, no elements found: " + selectorString);
+                    throw new ElementSearchException(maximumWaitingTimeInSeconds +
+                                                     " seconds elapsed, no elements found: " + selectorString);
                 }
                 Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
                 elaspedTime += WAIT_INTERVAL_IN_MILLIS;
@@ -134,6 +148,12 @@ namespace Eft.Elements
         public void Focus()
         {
             provider.Focus();
+        }
+
+        public void DbClick()
+        {
+            Click();
+            Click();
         }
     }
 }

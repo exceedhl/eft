@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Eft;
 using Eft.Elements;
@@ -34,6 +35,49 @@ namespace FunctionalTest
             // the context menu of wordpad is actually belongs to Desktop
             // Assert.AreEqual("Font...", window.FindFirst("MenuItem#'Item 57696'").Name);
 
+            app.Stop();
+        }
+
+        private Application app;
+        private Window window;
+
+        [SetUp]
+        public void setup()
+        {
+            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
+            app = Application.Run(fileName);
+            Window mainWindow = app.FindTopWindow("Stub");
+            mainWindow.FindFirst("#openClickTestWindow").Click();
+            window = app.FindTopWindow("click test window");
+        }
+
+        [Test]
+        [Ignore("it's failed because currently I can not get the clickable area.")]
+        public void click_at_some_point_of_an_element()
+        {
+            Element button = window.FindFirst("#bigButton");
+            Element logText = window.FindFirst("#log");
+            button.Click(10, 10);
+            Assert.AreEqual("10,10", logText.Text);
+        }
+
+        [Test]
+        public void double_click()
+        {
+            window.FindFirst("#doubleClickButton").DbClick();
+            Element logText = window.FindFirst("#log");
+            Assert.AreEqual("button double clicked", logText.Text);
+        }
+
+        [Test]
+        [Ignore("not implemented")]
+        public void click_with_holding_keys()
+        {
+        }
+
+        [TearDown]
+        public void teardown()
+        {
             app.Stop();
         }
     }

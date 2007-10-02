@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using Eft.Elements;
+using Eft.Exception;
 using Eft.Locators;
 using Eft.Locators.Selectors;
 using Eft.Win32;
@@ -93,8 +94,7 @@ namespace Eft.Provider
 
         public void Click()
         {
-            Mouse.MoveTo(automationElement.GetClickablePoint());
-            Mouse.Click(automationElement.GetClickablePoint());
+            Mouse.MoveToAndClick(automationElement.GetClickablePoint());
         }
 
         public void RightClick()
@@ -138,6 +138,20 @@ namespace Eft.Provider
                     default:
                         return WindowState.Normal;
                 }
+            }
+        }
+
+        public Rect BoundingRectangle
+        {
+            get
+            {
+                object boudingRect =
+                    automationElement.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty);
+                if (boudingRect == AutomationElement.NotSupported)
+                {
+                    throw new NotSupportedPropertyException("Can not get bounding rectangle of this element");
+                }
+                return (Rect) boudingRect;
             }
         }
 
