@@ -40,12 +40,12 @@ namespace FunctionalTest
             Window window = app.FindTopWindows()[0];
             window.FindFirst("MenuItem[name='Help']").Click();
             window.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
-            Element aboutWindow = window.WaitAndFindFirst("Window[name='About WordPad']");
+            Element aboutWindow = window.FindFirst("Window[name='About WordPad']");
             Assert.AreEqual("About WordPad", aboutWindow.Name);
             aboutWindow.FindFirst("Button").Click();
-            window.WaitAndFindFirst("MenuItem[name='Help']").Click();
+            window.FindFirst("MenuItem[name='Help']").Click();
             window.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type").Click();
-            Element closeButton = window.WaitAndFind("Window[name='About WordPad'] Button")[0];
+            Element closeButton = window.Find("Window[name='About WordPad'] Button")[0];
             Assert.AreEqual("OK", closeButton.Name);
             closeButton.Click();
 

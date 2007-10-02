@@ -21,7 +21,7 @@ namespace FunctionalTest
             Element contactListWindow = client.FindTopWindow("My contact list");
             contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
             contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
-            contactListWindow.WaitAndFindFirst("#contactsUsersTabControl [name='Rogerio']").Click();
+            contactListWindow.FindFirst("#contactsUsersTabControl [name='Rogerio']").Click();
             contactListWindow.FindFirst("#btnAddSelectedContact").Click();
 
             client.Stop();

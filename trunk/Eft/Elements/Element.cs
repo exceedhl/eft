@@ -90,37 +90,22 @@ namespace Eft.Elements
             return provider.Find(selector);
         }
 
-        public Element FindFirst(string selectorString)
-        {
-            List<Element> els = Find(selectorString);
-            if (els.Count == 0)
-            {
-                throw new ElementSearchException("No elements found: " + selectorString);
-            }
-            return els[0];
-        }
-
-        public List<Element> Find(string selector)
-        {
-            return provider.Find(selector);
-        }
-
         internal List<Element> FindChildren(SimpleSelector simpleSelector)
         {
             return provider.FindChildren(simpleSelector);
         }
 
-        public List<Element> WaitAndFind(string selectorString)
+        public List<Element> Find(string selectorString)
         {
-            return WaitAndFind(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
+            return Find(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
         }
 
-        public List<Element> WaitAndFind(string selectorString, int maximumWaitingTimeInSeconds)
+        public List<Element> Find(string selectorString, int maximumWaitingTimeInSeconds)
         {
             int elaspedTime = 0;
             while (true)
             {
-                List<Element> elements = Find(selectorString);
+                List<Element> elements = provider.Find(selectorString);
                 if (elements.Count > 0)
                 {
                     return elements;
@@ -135,14 +120,14 @@ namespace Eft.Elements
             }
         }
 
-        public Element WaitAndFindFirst(string selectorString)
+        public Element FindFirst(string selectorString)
         {
-            return WaitAndFindFirst(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
+            return FindFirst(selectorString, MAXIMUM_WAIT_TIME_IN_SEC);
         }
 
-        public Element WaitAndFindFirst(string selectorString, int maximumWaitingTimeInSeconds)
+        public Element FindFirst(string selectorString, int maximumWaitingTimeInSeconds)
         {
-            return WaitAndFind(selectorString, maximumWaitingTimeInSeconds)[0];
+            return Find(selectorString, maximumWaitingTimeInSeconds)[0];
         }
 
         public void Focus()
