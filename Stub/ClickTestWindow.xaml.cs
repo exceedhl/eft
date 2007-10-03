@@ -10,6 +10,19 @@ namespace stub
             InitializeComponent();
             bigButton.PreviewMouseLeftButtonDown += OnClickBigButton;
             doubleClickButton.MouseDoubleClick += OnDoubleClick;
+            clickWithHoldingKey.Click += OnClickWithHoldingKey;
+        }
+
+        private void OnClickWithHoldingKey(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                log.Text = "control click";
+            }
+            if (Keyboard.Modifiers == ModifierKeys.Shift)
+            {
+                log.Text = "shift click";
+            }
         }
 
         private void OnDoubleClick(object sender, MouseButtonEventArgs e)

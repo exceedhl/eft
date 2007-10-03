@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Eft;
 using Eft.Elements;
+using Eft.Exception;
 using NUnit.Framework;
 
 namespace FunctionalTest
@@ -40,6 +41,7 @@ namespace FunctionalTest
 
         private Application app;
         private Window window;
+        private Element logText;
 
         [SetUp]
         public void setup()
@@ -49,6 +51,7 @@ namespace FunctionalTest
             Window mainWindow = app.FindTopWindow("Stub");
             mainWindow.FindFirst("#openClickTestWindow").Click();
             window = app.FindTopWindow("click test window");
+            logText = window.FindFirst("#log");
         }
 
         [Test]
@@ -56,23 +59,32 @@ namespace FunctionalTest
         public void click_at_some_point_of_an_element()
         {
             Element button = window.FindFirst("#bigButton");
-            Element logText = window.FindFirst("#log");
             button.Click(10, 10);
             Assert.AreEqual("10,10", logText.Text);
+        }
+
+        [Test]
+        [ExpectedException(typeof (IllegalParameterException))]
+        public void should_throw_exception_if_click_some_point_out_of_element()
+        {
+            Element button = window.FindFirst("#bigButton");
+            button.Click(-10, -10);
         }
 
         [Test]
         public void double_click()
         {
             window.FindFirst("#doubleClickButton").DbClick();
-            Element logText = window.FindFirst("#log");
             Assert.AreEqual("button double clicked", logText.Text);
         }
 
         [Test]
-        [Ignore("not implemented")]
         public void click_with_holding_keys()
         {
+            window.FindFirst("#clickWithHoldingKey").CtrlClick();
+            Assert.AreEqual("control click", logText.Text);
+            window.FindFirst("#clickWithHoldingKey").ShiftClick();
+            Assert.AreEqual("shift click", logText.Text);
         }
 
         [TearDown]

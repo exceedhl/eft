@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
+using System.Windows.Input;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
@@ -139,6 +140,20 @@ namespace Eft.Elements
         public void Focus()
         {
             provider.Focus();
+        }
+
+        public void CtrlClick()
+        {
+            Keyboard.SendKeyboardInput(Key.LeftCtrl, true);
+            Click();
+            Keyboard.SendKeyboardInput(Key.LeftCtrl, false);
+        }
+
+        public void ShiftClick()
+        {
+            Keyboard.SendKeyboardInput(Key.LeftShift, true);
+            Click();
+            Keyboard.SendKeyboardInput(Key.LeftShift, false);
         }
     }
 }

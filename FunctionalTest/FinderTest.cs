@@ -33,6 +33,7 @@ namespace FunctionalTest
             app.Stop();
         }
 
+        // TODO: change this to use stub to test wait and find
         [Test]
         public void wait_and_find()
         {
