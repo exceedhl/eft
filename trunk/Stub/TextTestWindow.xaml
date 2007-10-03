@@ -22,8 +22,9 @@
           <ComboBoxItem Name="comboBoxItem">item 1</ComboBoxItem>
         </ComboBox>
 
-        <ListBox>
+        <ListBox SelectionMode="Extended">
           <ListBoxItem Name="listBoxItem">list box item</ListBoxItem>
+          <ListBoxItem Name="listBoxItem2">list box item2</ListBoxItem>
         </ListBox>
         
         

@@ -7,5 +7,6 @@
     <TextBox Name="log"></TextBox>
     <Button Name="bigButton" Width="200" Height="100">big button</Button>
     <Button Name="doubleClickButton">double click button</Button>
+    <Button Name="clickWithHoldingKey">click with holding key</Button>
   </StackPanel>
 </Window>
