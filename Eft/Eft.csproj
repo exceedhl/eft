@@ -38,14 +38,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\library\UIAutomationClient.dll</HintPath>
     </Reference>
-    <Reference Include="UIAutomationClientsideProviders, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\library\UIAutomationClientsideProviders.dll</HintPath>
-    </Reference>
-    <Reference Include="UIAutomationProvider, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\library\UIAutomationProvider.dll</HintPath>
-    </Reference>
     <Reference Include="UIAutomationTypes, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\library\UIAutomationTypes.dll</HintPath>

@@ -199,5 +199,12 @@ namespace Eft.Provider
 
             return elements;
         }
+
+        public override string ToString()
+        {
+            return "[ControlType: " + automationElement.Current.LocalizedControlType + 
+                "; Name: " + Name + 
+                "; AutomationId: " + Id + "]";
+        }
     }
 }

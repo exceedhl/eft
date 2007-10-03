@@ -10,7 +10,7 @@ namespace Eft.Elements
         {
             if (!automationProvider.IsWindow)
             {
-                throw new ControlTypeConversionException("This element is not a Window");
+                throw new ControlTypeConversionException("This element is not a Window: " + automationProvider);
             }
         }
 
