@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using Eft;
 using Eft.Elements;
 using Eft.Exception;
@@ -10,35 +9,6 @@ namespace FunctionalTest
     [TestFixture]
     public class ClickTest
     {
-        [Test]
-        public void left_click()
-        {
-            Application app = Application.Run("calc");
-
-            Element window = app.FindTopWindows()[0];
-            window.FindFirst("Button[name='1']").Click();
-            window.FindFirst("*[name='+']").Click();
-            window.FindFirst("[name='2']").Click();
-            window.FindFirst("[name='=']").Click();
-            Thread.Sleep(500);
-            Assert.AreEqual("3. ", window.FindFirst("Edit").Text);
-
-            app.Stop();
-        }
-
-        [Test]
-        public void right_click()
-        {
-            Application app = Application.Run("wordpad");
-
-            Element window = app.FindTopWindows()[0];
-            window.FindFirst(".RICHEDIT50W").RightClick();
-            // the context menu of wordpad is actually belongs to Desktop
-            // Assert.AreEqual("Font...", window.FindFirst("MenuItem#'Item 57696'").Name);
-
-            app.Stop();
-        }
-
         private Application app;
         private Window window;
         private Element logText;
@@ -52,6 +22,24 @@ namespace FunctionalTest
             mainWindow.FindFirst("#openClickTestWindow").Click();
             window = app.FindTopWindow("click test window");
             logText = window.FindFirst("#log");
+        }
+
+        [Test]
+        public void left_click()
+        {
+            window.FindFirst("#pressButton").Click();
+            Assert.AreEqual("Left Pressed", logText.Text);
+            window.FindFirst("#releaseButton").Click();
+            Assert.AreEqual("Left Released", logText.Text);
+        }
+
+        [Test]
+        public void right_click()
+        {
+            window.FindFirst("#pressButton").RightClick();
+            Assert.AreEqual("Right Pressed", logText.Text);
+            window.FindFirst("#releaseButton").RightClick();
+            Assert.AreEqual("Right Released", logText.Text);
         }
 
         [Test]
@@ -74,17 +62,22 @@ namespace FunctionalTest
         [Test]
         public void double_click()
         {
-            window.FindFirst("#doubleClickButton").DbClick();
-            Assert.AreEqual("button double clicked", logText.Text);
+            window.FindFirst("#pressButtonWithCount").DbClick();
+            Assert.AreEqual("Left Pressed 2", logText.Text);
         }
 
         [Test]
         public void click_with_holding_keys()
         {
-            window.FindFirst("#clickWithHoldingKey").CtrlClick();
-            Assert.AreEqual("control click", logText.Text);
-            window.FindFirst("#clickWithHoldingKey").ShiftClick();
-            Assert.AreEqual("shift click", logText.Text);
+            window.FindFirst("#pressButton").CtrlClick();
+            Assert.AreEqual("Control Left Pressed", logText.Text);
+            window.FindFirst("#pressButton").ShiftClick();
+            Assert.AreEqual("Shift Left Pressed", logText.Text);
+
+            window.FindFirst("#releaseButton").CtrlClick();
+            Assert.AreEqual("Control Left Released", logText.Text);
+            window.FindFirst("#releaseButton").ShiftClick();
+            Assert.AreEqual("Shift Left Released", logText.Text);
         }
 
         [TearDown]

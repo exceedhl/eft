@@ -6,7 +6,9 @@
   <StackPanel>
     <TextBox Name="log"></TextBox>
     <Button Name="bigButton" Width="200" Height="100">big button</Button>
-    <Button Name="doubleClickButton">double click button</Button>
-    <Button Name="clickWithHoldingKey">click with holding key</Button>
+    <Button Name="pressButton">press button</Button>
+    <Button Name="releaseButton">release button</Button>
+    <Button Name="pressButtonWithCount">press button with count</Button>
+    <Button Name="releaseButtonWithCount">release button with count</Button>
   </StackPanel>
 </Window>
