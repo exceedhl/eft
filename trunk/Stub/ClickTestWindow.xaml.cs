@@ -9,25 +9,45 @@ namespace stub
         {
             InitializeComponent();
             bigButton.PreviewMouseLeftButtonDown += OnClickBigButton;
-            doubleClickButton.MouseDoubleClick += OnDoubleClick;
-            clickWithHoldingKey.Click += OnClickWithHoldingKey;
+            pressButton.PreviewMouseDown += OnMouseDown;
+            releaseButton.PreviewMouseUp += OnMouseUp;
+
+            pressButtonWithCount.PreviewMouseDown += OnMouseDownWithCount;
+            releaseButtonWithCount.PreviewMouseUp += OnMouseUpWithCount;
         }
 
-        private void OnClickWithHoldingKey(object sender, RoutedEventArgs e)
+        private void OnMouseUpWithCount(object sender, MouseButtonEventArgs e)
         {
-            if (Keyboard.Modifiers == ModifierKeys.Control)
-            {
-                log.Text = "control click";
-            }
-            if (Keyboard.Modifiers == ModifierKeys.Shift)
-            {
-                log.Text = "shift click";
-            }
+            LogMessage(e);
+            log.Text += " " + e.ClickCount;
         }
 
-        private void OnDoubleClick(object sender, MouseButtonEventArgs e)
+        private void OnMouseDownWithCount(object sender, MouseButtonEventArgs e)
         {
-            log.Text = "button double clicked";
+            LogMessage(e);
+            log.Text += " " + e.ClickCount;
+        }
+
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            LogMessage(e);
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LogMessage(e);
+        }
+
+        private void LogMessage(MouseButtonEventArgs e)
+        {
+            log.Text = "";
+
+            if (Keyboard.Modifiers != ModifierKeys.None)
+            {
+                log.Text += Keyboard.Modifiers + " ";
+            }
+            log.Text += e.ChangedButton.ToString();
+            log.Text += " " + e.ButtonState;
         }
 
         private void OnClickBigButton(object sender, MouseButtonEventArgs e)
