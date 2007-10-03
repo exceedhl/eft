@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="ApplicationTest.cs" />
     <Compile Include="ClickTest.cs" />
-    <Compile Include="EvolveTest.cs" />
+    <Compile Include="DemoTest.cs" />
     <Compile Include="FinderTest.cs" />
     <Compile Include="LocatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

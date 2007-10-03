@@ -5,11 +5,10 @@ using NUnit.Framework;
 namespace FunctionalTest
 {
     [TestFixture]
-    [Ignore]
-    public class EvolveTest
+    public class DemoTest
     {
         [Test]
-        public void spike()
+        public void evolve_test()
         {
             Application server =
                 Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
