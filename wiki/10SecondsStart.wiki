@@ -1,6 +1,6 @@
 #summary getting to use Eft in a very short time!
 
-1 Prepare the enviroment (you know how to do it)
+1 Prepare the enviroment, Eft is tested under my Windows XP with .Net 3.0 installed. Reference Eft.dll and Windows UI automation dlls: UIAutomationTypes.dll and UIAutomationClient.dll in your test project.
 
 2 write a unit test, with following:
 {{{
