@@ -55,7 +55,6 @@ namespace FunctionalTest
             window.FindFirst("*[name='+']").Click();
             window.FindFirst("[name='2']").Click();
             window.FindFirst("[name='=']").Click();
-            Thread.Sleep(500);
             Assert.AreEqual("3. ", window.FindFirst("Edit").Text);
 
             app.Stop();
