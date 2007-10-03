@@ -13,7 +13,7 @@ namespace FunctionalTest
         public void evolve_test()
         {
             Application server =
-                Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Evolve.Server.exe");
+                Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Connect.Server.exe");
             Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
 
             Element launcherWindow = client.FindTopWindow("Launcher Window");
@@ -22,8 +22,24 @@ namespace FunctionalTest
             Element contactListWindow = client.FindTopWindow("My contact list");
             contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
             contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
-            contactListWindow.FindFirst("#contactsUsersTabControl [name='Rogerio']").Click();
+            contactListWindow.FindFirst("#contactOrUserTabControl [name='Rogerio']").Click();
             contactListWindow.FindFirst("#btnAddSelectedContact").Click();
+            Element contact = contactListWindow.FindFirst("#tcMyContactLists [name='Rogerio']");
+            contact.Click();
+            contact.RightClick();
+            contactListWindow.FindFirst("#miCreateNote").Click();
+            Window contactNoteWindow = client.FindTopWindow("New contact note | Rogerio Chequer");
+            contactNoteWindow.FindFirst("#textContainer").Type("some note");
+            contactNoteWindow.FindFirst("#userField").Type("Marc Mcneill");
+            contactNoteWindow.FindFirst("#btnSave").Click();
+
+//            string text = launcherWindow.FindFirst("#tbAlertsList").Text;
+//            int num = int.Parse(text.Substring(8, 1));
+//            num++;
+            launcherWindow.FindFirst("#tbAlertsList").Click();
+            Window alertWindow = client.FindTopWindow("Alerts");
+            alertWindow.FindFirst(".AlertDisplayControl:first-of-type").Click();
+
 
             client.Stop();
             server.Stop();
