@@ -13,13 +13,6 @@ namespace stub
             releaseButton.PreviewMouseUp += OnMouseUp;
 
             pressButtonWithCount.PreviewMouseDown += OnMouseDownWithCount;
-            releaseButtonWithCount.PreviewMouseUp += OnMouseUpWithCount;
-        }
-
-        private void OnMouseUpWithCount(object sender, MouseButtonEventArgs e)
-        {
-            LogMessage(e);
-            log.Text += " " + e.ClickCount;
         }
 
         private void OnMouseDownWithCount(object sender, MouseButtonEventArgs e)

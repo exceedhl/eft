@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Input;
 using Eft;
 using Eft.Elements;
 using Eft.Exception;
@@ -12,6 +13,9 @@ namespace FunctionalTest
         private Application app;
         private Window window;
         private Element logText;
+        private Element pressButton;
+        private Element releaseButton;
+        private Element pressButtonWithCount;
 
         [SetUp]
         public void setup()
@@ -22,12 +26,15 @@ namespace FunctionalTest
             mainWindow.FindFirst("#openClickTestWindow").Click();
             window = app.FindTopWindow("click test window");
             logText = window.FindFirst("#log");
+            pressButton = window.FindFirst("#pressButton");
+            releaseButton = window.FindFirst("#releaseButton");
+            pressButtonWithCount = window.FindFirst("#pressButtonWithCount");
         }
 
         [Test]
         public void left_click()
         {
-            window.FindFirst("#pressButton").Click();
+            pressButton.Click();
             Assert.AreEqual("Left Pressed", logText.Text);
             window.FindFirst("#releaseButton").Click();
             Assert.AreEqual("Left Released", logText.Text);
@@ -36,9 +43,9 @@ namespace FunctionalTest
         [Test]
         public void right_click()
         {
-            window.FindFirst("#pressButton").RightClick();
+            pressButton.RightClick();
             Assert.AreEqual("Right Pressed", logText.Text);
-            window.FindFirst("#releaseButton").RightClick();
+            releaseButton.RightClick();
             Assert.AreEqual("Right Released", logText.Text);
         }
 
@@ -62,22 +69,77 @@ namespace FunctionalTest
         [Test]
         public void double_click()
         {
-            window.FindFirst("#pressButtonWithCount").DbClick();
+            pressButtonWithCount.DbClick();
             Assert.AreEqual("Left Pressed 2", logText.Text);
         }
 
         [Test]
         public void click_with_holding_keys()
         {
-            window.FindFirst("#pressButton").CtrlClick();
+            pressButton.CtrlClick();
             Assert.AreEqual("Control Left Pressed", logText.Text);
-            window.FindFirst("#pressButton").ShiftClick();
+            pressButton.ShiftClick();
             Assert.AreEqual("Shift Left Pressed", logText.Text);
 
-            window.FindFirst("#releaseButton").CtrlClick();
+            releaseButton.CtrlClick();
             Assert.AreEqual("Control Left Released", logText.Text);
-            window.FindFirst("#releaseButton").ShiftClick();
+            releaseButton.ShiftClick();
             Assert.AreEqual("Shift Left Released", logText.Text);
+        }
+
+        [Test]
+        public void general_click_once()
+        {
+            pressButton.Click(MouseButton.Left, ModifierKeys.None, 1);
+            Assert.AreEqual("Left Pressed", logText.Text);
+            pressButton.Click(MouseButton.Right, ModifierKeys.None, 1);
+            Assert.AreEqual("Right Pressed", logText.Text);
+            pressButton.Click(MouseButton.Middle, ModifierKeys.None, 1);
+            Assert.AreEqual("Middle Pressed", logText.Text);
+
+            releaseButton.Click(MouseButton.Left, ModifierKeys.None, 1);
+            Assert.AreEqual("Left Released", logText.Text);
+            releaseButton.Click(MouseButton.Right, ModifierKeys.None, 1);
+            Assert.AreEqual("Right Released", logText.Text);
+            releaseButton.Click(MouseButton.Middle, ModifierKeys.None, 1);
+            Assert.AreEqual("Middle Released", logText.Text);
+
+            pressButton.Click(MouseButton.Left, ModifierKeys.Control, 1);
+            Assert.AreEqual("Control Left Pressed", logText.Text);
+            pressButton.Click(MouseButton.Right, ModifierKeys.Alt, 1);
+            Assert.AreEqual("Alt Right Pressed", logText.Text);
+            pressButton.Click(MouseButton.Middle, ModifierKeys.Shift, 1);
+            Assert.AreEqual("Shift Middle Pressed", logText.Text);
+
+            releaseButton.Click(MouseButton.Left, ModifierKeys.Control, 1);
+            Assert.AreEqual("Control Left Released", logText.Text);
+            releaseButton.Click(MouseButton.Right, ModifierKeys.Alt, 1);
+            Assert.AreEqual("Alt Right Released", logText.Text);
+            releaseButton.Click(MouseButton.Middle, ModifierKeys.Shift, 1);
+            Assert.AreEqual("Shift Middle Released", logText.Text);
+        }
+
+        [Test]
+        public void general_click_operation_with_times()
+        {
+            pressButtonWithCount.Click(MouseButton.Left, ModifierKeys.Control, 1);
+            Assert.AreEqual("Control Left Pressed 1", logText.Text);
+            logText.ClearText();
+            pressButtonWithCount.Click(MouseButton.Right, ModifierKeys.Alt, 2);
+            Assert.AreEqual("Alt Right Pressed 2", logText.Text);
+            logText.ClearText();
+            pressButtonWithCount.Click(MouseButton.Middle, ModifierKeys.Shift, 3);
+            Assert.AreEqual("Shift Middle Pressed 3", logText.Text);
+            logText.ClickAndType("");
+            pressButtonWithCount.Click(MouseButton.Middle, ModifierKeys.Shift, 4);
+            Assert.AreEqual("Shift Middle Pressed 4", logText.Text);
+        }
+
+        [Test]
+        [ExpectedException(typeof (IllegalParameterException))]
+        public void should_throw_exception_if_click_times_are_minus()
+        {
+            pressButtonWithCount.Click(MouseButton.Left, ModifierKeys.Control, -1);
         }
 
         [TearDown]

@@ -9,6 +9,5 @@
     <Button Name="pressButton">press button</Button>
     <Button Name="releaseButton">release button</Button>
     <Button Name="pressButtonWithCount">press button with count</Button>
-    <Button Name="releaseButtonWithCount">release button with count</Button>
   </StackPanel>
 </Window>
