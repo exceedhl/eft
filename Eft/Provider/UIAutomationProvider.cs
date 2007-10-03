@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using System.Windows.Input;
 using Eft.Elements;
 using Eft.Exception;
 using Eft.Locators;
@@ -92,20 +93,41 @@ namespace Eft.Provider
             automationElement.SetFocus();
         }
 
-        public void Click()
+        public void Click(MouseButton mouseButton, ModifierKeys modifierKeys, int times)
         {
-            Mouse.MoveToAndClick(automationElement.GetClickablePoint());
+            if (times < 0)
+            {
+                throw new IllegalParameterException("Click times can not be minus");
+            }
+            Key key = GetKey(modifierKeys);
+            Keyboard.SendKeyboardInput(key, true);
+            for (int i = 0; i < times; i++)
+            {
+                Mouse.MoveToAndClick(ClickablePoint, mouseButton);
+            }
+            Keyboard.SendKeyboardInput(key, false);
+        }
+
+        public static Key GetKey(ModifierKeys modifierKeys)
+        {
+            switch (modifierKeys)
+            {
+                case ModifierKeys.Control:
+                    return Key.LeftCtrl;
+                case ModifierKeys.Alt:
+                    return Key.LeftAlt;
+                case ModifierKeys.Shift:
+                    return Key.LeftShift;
+                case ModifierKeys.Windows:
+                    return Key.LWin;
+                default:
+                    return Key.None;
+            }
         }
 
         public void Click(Point point)
         {
             Mouse.MoveToAndClick(point);
-        }
-
-        public void RightClick()
-        {
-            Mouse.MoveTo(automationElement.GetClickablePoint());
-            Mouse.RightClick(automationElement.GetClickablePoint());
         }
 
         public void Type(string text)

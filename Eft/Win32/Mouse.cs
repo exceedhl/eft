@@ -3,31 +3,12 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Automation;
+using Eft.Elements;
 
 namespace Eft.Win32
 {
     public class Mouse
     {
-        /// <summary>
-        /// Move the mouse to an element and click on it.  The primary mouse button will be used
-        /// this is usually the left button except if the mouse buttons are swaped.
-        ///
-        /// IMPORTANT!
-        /// 
-        /// Do not call MoveToAndClick (actually, do not make any calls to UIAutomationClient) 
-        /// from the UI thread if your test is in the same process as the UI being tested.  
-        /// UIAutomation calls back into Avalon core for UI information (e.g. ClickablePoint) 
-        /// and must be on the UI thread to get this information.  If your test is making calls 
-        /// from the UI thread you are going to deadlock...
-        /// 
-        /// </summary>
-        /// <param name="el">The element to click on</param>
-        /// <exception cref="NoClickablePointException">If there is not clickable point for the element</exception>
-        /// 
-        /// <outside_see conditional="false">
-        /// This API does not work inside the secure execution environment.
-        /// <exception cref="System.Security.Permissions.SecurityPermission"/>
-        /// </outside_see>
         internal static void MoveToAndClick(AutomationElement el)
         {
             if (el == null)
@@ -45,9 +26,114 @@ namespace Eft.Win32
             Click(point);
         }
 
+        public static void MoveToAndClick(Point point, MouseButton button)
+        {
+            MoveTo(point);
+            MouseDown(point, button);
+            MouseUp(point, button);
+        }
+
+        private static void MouseUp(Point pt, MouseButton button)
+        {
+            SendMouseInputFlags flag;
+            switch (button)
+            {
+                case MouseButton.Left:
+                    flag = SendMouseInputFlags.LeftUp;
+                    break;
+                case MouseButton.Right:
+                    flag = SendMouseInputFlags.RightUp;
+                    break;
+                case MouseButton.Middle:
+                    flag = SendMouseInputFlags.MiddleUp;
+                    break;
+                default:
+                    flag = SendMouseInputFlags.XUp;
+                    break;
+            }
+            SendMouseInput(pt.X, pt.Y, 0, flag | SendMouseInputFlags.Absolute);
+        }
+
+        private static void MouseDown(Point pt, MouseButton button)
+        {
+            SendMouseInputFlags flag;
+            switch (button)
+            {
+                case MouseButton.Left:
+                    flag = SendMouseInputFlags.LeftDown;
+                    break;
+                case MouseButton.Right:
+                    flag = SendMouseInputFlags.RightDown;
+                    break;
+                case MouseButton.Middle:
+                    flag = SendMouseInputFlags.MiddleDown;
+                    break;
+                default:
+                    flag = SendMouseInputFlags.XDown;
+                    break;
+            }
+            SendMouseInput(pt.X, pt.Y, 0, flag | SendMouseInputFlags.Absolute);
+        }
+
         public static void SendMouseInput(int x, int y, int data, SendMouseInputFlags flags)
         {
             SendMouseInput(x, y, data, flags);
+        }
+
+        /// <summary>
+        /// Move the mouse to an element. 
+        ///
+        /// IMPORTANT!
+        /// 
+        /// Do not call MoveToAndClick (actually, do not make any calls to UIAutomationClient) 
+        /// from the UI thread if your test is in the same process as the UI being tested.  
+        /// UIAutomation calls back into Avalon core for UI information (e.g. ClickablePoint) 
+        /// and must be on the UI thread to get this information.  If your test is making calls 
+        /// from the UI thread you are going to deadlock...
+        internal static void MoveTo(AutomationElement el)
+        {
+            if (el == null)
+            {
+                throw new ArgumentNullException("el");
+            }
+            MoveTo(el.GetClickablePoint());
+        }
+
+        public static void MoveTo(Point pt)
+        {
+            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.Move | SendMouseInputFlags.Absolute);
+        }
+
+        public static void LeftButtonDown(Point pt)
+        {
+            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
+        }
+
+        public static void LeftButtonUp(Point pt)
+        {
+            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftUp | SendMouseInputFlags.Absolute);
+        }
+
+        public static void RightButtonDown(Point pt)
+        {
+            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
+        }
+
+        public static void RightButtonUp(Point pt)
+        {
+            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightUp | SendMouseInputFlags.Absolute);
+        }
+
+        public static void Click(Point pt)
+        {
+            LeftButtonDown(pt);
+            LeftButtonUp(pt);
+        }
+
+        public static void RightClick(Point pt)
+        {
+            RightButtonDown(pt);
+            RightButtonUp(pt);
         }
 
         /// <summary>
@@ -112,127 +198,6 @@ namespace Eft.Win32
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
-        }
-
-        /// <summary>
-        /// Move the mouse to an element. 
-        ///
-        /// IMPORTANT!
-        /// 
-        /// Do not call MoveToAndClick (actually, do not make any calls to UIAutomationClient) 
-        /// from the UI thread if your test is in the same process as the UI being tested.  
-        /// UIAutomation calls back into Avalon core for UI information (e.g. ClickablePoint) 
-        /// and must be on the UI thread to get this information.  If your test is making calls 
-        /// from the UI thread you are going to deadlock...
-        /// 
-        /// </summary>
-        /// <param name="el">The element that the mouse will move to</param>
-        /// <exception cref="NoClickablePointException">If there is not clickable point for the element</exception>
-        /// 
-        /// <outside_see conditional="false">
-        /// This API does not work inside the secure execution environment.
-        /// <exception cref="System.Security.Permissions.SecurityPermission"/>
-        /// </outside_see>
-        internal static void MoveTo(AutomationElement el)
-        {
-            if (el == null)
-            {
-                throw new ArgumentNullException("el");
-            }
-            MoveTo(el.GetClickablePoint());
-        }
-
-        /// <summary>
-        /// Move the mouse to a point. 
-        /// </summary>
-        /// <param name="pt">The point that the mouse will move to.</param>
-        /// <remarks>pt are in pixels that are relative to desktop origin.</remarks>
-        /// 
-        /// <outside_see conditional="false">
-        /// This API does not work inside the secure execution environment.
-        /// <exception cref="System.Security.Permissions.SecurityPermission"/>
-        /// </outside_see>
-        public static void MoveTo(Point pt)
-        {
-            SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.Move | SendMouseInputFlags.Absolute);
-        }
-
-        public static void LeftButtonDown(Point pt)
-        {
-            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
-            }
-            else
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
-            }
-        }
-
-        public static void LeftButtonUp(Point pt)
-        {
-            // send SendMouseInput works in term of the phisical mouse buttons, therefore we need
-            // to check to see if the mouse buttons are swapped because this method need to use the primary
-            // mouse button.
-            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftUp | SendMouseInputFlags.Absolute);
-            }
-            else
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightUp | SendMouseInputFlags.Absolute);
-            }
-        }
-
-        public static void RightButtonDown(Point pt)
-        {
-            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightDown | SendMouseInputFlags.Absolute);
-            }
-            else
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftDown | SendMouseInputFlags.Absolute);
-            }
-        }
-
-        public static void RightButtonUp(Point pt)
-        {
-            if (0 == APIWrapper.GetSystemMetrics(APIWrapper.SM_SWAPBUTTON))
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.RightUp | SendMouseInputFlags.Absolute);
-            }
-            else
-            {
-                SendMouseInput(pt.X, pt.Y, 0, SendMouseInputFlags.LeftUp | SendMouseInputFlags.Absolute);
-            }
-        }
-
-        public static void Click(Point pt)
-        {
-            LeftButtonDown(pt);
-            LeftButtonUp(pt);
-        }
-
-        public static void RightClick(Point pt)
-        {
-            RightButtonDown(pt);
-            RightButtonUp(pt);
-        }
-
-        public static void Click(IntPtr wnd, Point point)
-        {
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_SETCURSOR, 0, 0x02000001);
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_MOUSEACTIVATE, 0, 0x02010001);
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_SETCURSOR, 0, 0x02000001);
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_LBUTTONDOWN, 0, ref point);
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_LBUTTONUP, 0, ref point);
-        }
-
-        public static void MoveTo(IntPtr wnd, Point point)
-        {
-            APIWrapper.SendMessage(APIWrapper.HWND.Cast(wnd), (int) WindowsMessages.WM_MOUSEMOVE,
-                                   (int) (SendMouseInputFlags.Move | SendMouseInputFlags.Absolute), ref point);
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Eft.Exception;
 using Eft.Locators.Selectors;
 using Eft.Provider;
-using Eft.Win32;
 
 namespace Eft.Elements
 {
@@ -50,13 +49,32 @@ namespace Eft.Elements
 
         public void DbClick()
         {
-            Click();
-            Click();
+            provider.Click(MouseButton.Left, ModifierKeys.None, 2);
         }
 
         public void Click()
         {
-            provider.Click();
+            provider.Click(MouseButton.Left, ModifierKeys.None, 1);
+        }
+
+        public void Click(MouseButton mouseButton, ModifierKeys modifierKeys, int times)
+        {
+            provider.Click(mouseButton, modifierKeys, times);
+        }
+
+        public void RightClick()
+        {
+            provider.Click(MouseButton.Right, ModifierKeys.None, 1);
+        }
+
+        public void CtrlClick()
+        {
+            provider.Click(MouseButton.Left, ModifierKeys.Control, 1);
+        }
+
+        public void ShiftClick()
+        {
+            provider.Click(MouseButton.Left, ModifierKeys.Shift, 1);
         }
 
         public void Click(int x, int y)
@@ -69,11 +87,6 @@ namespace Eft.Elements
                 throw new IllegalParameterException("Specified click point is out of element's bounding rectangle");
             }
             provider.Click(point);
-        }
-
-        public void RightClick()
-        {
-            provider.RightClick();
         }
 
         public void Type(string text)
@@ -140,20 +153,6 @@ namespace Eft.Elements
         public void Focus()
         {
             provider.Focus();
-        }
-
-        public void CtrlClick()
-        {
-            Keyboard.SendKeyboardInput(Key.LeftCtrl, true);
-            Click();
-            Keyboard.SendKeyboardInput(Key.LeftCtrl, false);
-        }
-
-        public void ShiftClick()
-        {
-            Keyboard.SendKeyboardInput(Key.LeftShift, true);
-            Click();
-            Keyboard.SendKeyboardInput(Key.LeftShift, false);
         }
     }
 }
