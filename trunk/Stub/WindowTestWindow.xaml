@@ -1,0 +1,10 @@
+﻿<Window x:Class="stub.WindowTestWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    SizeToContent="WidthAndHeight" Title="Window test window">
+  <StackPanel>
+    <Button Name="openPopupWindow" Content="Open Popup Window"/>
+    <Button Name="openNewWindow" Content="Open New Window"/>
+    <Button Name="openUnresizableWindow" Content="Open Unresizable Window"/>
+  </StackPanel>
+</Window>

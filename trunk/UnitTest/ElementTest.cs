@@ -54,10 +54,10 @@ namespace Eft
         }
 
         [Test]
-        [ExpectedException(typeof (NotSupportedPropertyException), "message")]
+        [ExpectedException(typeof (PropertyNotSupportedException), "message")]
         public void should_throw_exception_if_provider_does_not_support_getting_bounding_rectangle()
         {
-            Expect.Call(mockProvider.BoundingRectangle).Throw(new NotSupportedPropertyException("message"));
+            Expect.Call(mockProvider.BoundingRectangle).Throw(new PropertyNotSupportedException("message"));
             mocks.ReplayAll();
             element.Click(0, 0);
             mocks.VerifyAll();

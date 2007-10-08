@@ -55,7 +55,8 @@
     <Compile Include="Exception\ControlTypeConversionException.cs" />
     <Compile Include="Exception\ElementSearchException.cs" />
     <Compile Include="Exception\IllegalParameterException.cs" />
-    <Compile Include="Exception\NotSupportedPropertyException.cs" />
+    <Compile Include="Exception\OperationNotSupportedException.cs" />
+    <Compile Include="Exception\PropertyNotSupportedException.cs" />
     <Compile Include="Exception\SelectorParsingException.cs" />
     <Compile Include="Exception\SelectorTranslationException.cs" />
     <Compile Include="Locators\ControlTypeSearcher.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Provider\IAutomationProvider.cs" />
     <Compile Include="Locators\Selectors\IParser.cs" />
     <Compile Include="Locators\Selectors\Parser.cs" />
+    <Compile Include="Tester.cs" />
     <Compile Include="Win32\Keyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Locators\SelectorTranslator.cs" />

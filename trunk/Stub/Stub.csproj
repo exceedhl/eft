@@ -41,8 +41,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NewWindow.xaml.cs">
-      <DependentUpon>NewWindow.xaml</DependentUpon>
+    <Compile Include="WindowTestWindow.xaml.cs">
+      <DependentUpon>WindowTestWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
-    <Page Include="NewWindow.xaml" />
+    <Page Include="WindowTestWindow.xaml" />
     <Page Include="TextTestWindow.xaml" />
     <Page Include="ClickTestWindow.xaml" />
   </ItemGroup>
