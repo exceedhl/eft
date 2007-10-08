@@ -74,7 +74,8 @@ namespace Eft
             return FindTopWindows(MAXIMUM_WAIT_TIME_IN_SEC);
         }
 
-        public Window FindTopWindow(string title, int maximumWaitingTimeInSeconds)
+        public Window FindTopWindow(string title, StringMatchDelegate stringMatchingCriteria,
+                                    int maximumWaitingTimeInSeconds)
         {
             int elaspedTime = 0;
             while (true)
@@ -82,7 +83,7 @@ namespace Eft
                 List<Window> windows = Desktop.FindTopWindowsByProcessId(process.Id);
                 foreach (Window window in windows)
                 {
-                    if (window.Name == title)
+                    if (stringMatchingCriteria(window.Name, title))
                     {
                         return window;
                     }
@@ -96,9 +97,19 @@ namespace Eft
             }
         }
 
+        public Window FindTopWindow(string title, StringMatchDelegate stringMatchDelegate)
+        {
+            return FindTopWindow(title, stringMatchDelegate, MAXIMUM_WAIT_TIME_IN_SEC);
+        }
+
         public Window FindTopWindow(string title)
         {
             return FindTopWindow(title, MAXIMUM_WAIT_TIME_IN_SEC);
+        }
+
+        public Window FindTopWindow(string title, int maximumWaitingTimeInSeconds)
+        {
+            return FindTopWindow(title, Match.Exact, maximumWaitingTimeInSeconds);
         }
     }
 }

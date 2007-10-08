@@ -1,3 +1,5 @@
+using System;
+
 namespace Eft
 {
     public class Tester
@@ -16,12 +18,12 @@ namespace Eft
 
         public void AssertWindowTitle(string title)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void AssertTextPresent(string text)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Retire()

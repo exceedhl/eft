@@ -35,6 +35,24 @@ namespace FunctionalTest
             app.Stop();
         }
 
+        [Test]
+        public void find_by_different_matching_criteria()
+        {
+            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
+            Application app = Application.Run(fileName);
+            Window mainWindow = app.FindTopWindow("Stub");
+            mainWindow.FindFirst("#openWindowTestWindow").Click();
+            Window windowTestWindow = app.FindTopWindow("Window test window");
+            windowTestWindow.FindFirst("#openNewWindow").Click();
+            windowTestWindow.FindFirst("#openNewWindow").Click();
+
+            Assert.AreEqual("new window 0", app.FindTopWindow("*window 0", Match.Glob).Text);
+            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0", Match.Glob).Text);
+            Assert.AreEqual("new window 0", app.FindTopWindow("^.*window 0", Match.Regex).Text);
+            Assert.AreEqual("new window 0", app.FindTopWindow("new window 0", Match.Exact).Text);
+            app.Stop();
+        }
+
         // TODO: change this to use stub to test wait and find
         [Test]
         public void wait_and_find()
