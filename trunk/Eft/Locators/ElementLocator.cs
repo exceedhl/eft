@@ -19,7 +19,7 @@ namespace Eft.Locators
         {
             if (selector is SimpleSelector)
             {
-                return provider.Find((SimpleSelector) selector);
+                return provider.FindDescendents((SimpleSelector) selector);
             }
             if (selector is ChildrenSelector)
             {

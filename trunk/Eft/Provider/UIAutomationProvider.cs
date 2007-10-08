@@ -155,22 +155,7 @@ namespace Eft.Provider
             Focus();
             SendKeys.SendWait(text);
         }
-
-        public List<Element> Find(string selectorString)
-        {
-            return Find(parser.Parse(selectorString));
-        }
-
-        public List<Element> Find(Selector selector)
-        {
-            return elementLocator.Find(selector);
-        }
-
-        public List<Element> Find(SimpleSelector simpleSelector)
-        {
-            return FindFrom(simpleSelector, TreeScope.Descendants);
-        }
-
+        
         public WindowState WindowState
         {
             get
@@ -202,12 +187,27 @@ namespace Eft.Provider
             }
         }
 
-        public List<Element> FindChildren(SimpleSelector simpleSelector)
+        public List<Element> Find(string selectorString)
         {
-            return FindFrom(simpleSelector, TreeScope.Children);
+            return Find(parser.Parse(selectorString));
         }
 
-        private List<Element> FindFrom(SimpleSelector simpleSelector, TreeScope scope)
+        public List<Element> Find(Selector selector)
+        {
+            return elementLocator.Find(selector);
+        }
+
+        public List<Element> FindDescendents(SimpleSelector simpleSelector)
+        {
+            return FindInScope(simpleSelector, TreeScope.Descendants);
+        }
+
+        public List<Element> FindChildren(SimpleSelector simpleSelector)
+        {
+            return FindInScope(simpleSelector, TreeScope.Children);
+        }
+
+        private List<Element> FindInScope(SimpleSelector simpleSelector, TreeScope scope)
         {
             List<Element> elements = new List<Element>();
             AutomationElementCollection all =

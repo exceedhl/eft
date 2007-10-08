@@ -36,7 +36,7 @@ namespace FunctionalTest
 //            string text = launcherWindow.FindFirst("#tbAlertsList").Text;
 //            int num = int.Parse(text.Substring(8, 1));
 //            num++;
-            launcherWindow.FindFirst("#tbAlertsList").Click();
+            launcherWindow.FindFirst("#btnLaunchAlertList").Click();
             Window alertWindow = client.FindTopWindow("Alerts");
             alertWindow.FindFirst(".AlertDisplayControl:first-of-type").Click();
 
