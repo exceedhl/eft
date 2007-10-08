@@ -27,6 +27,6 @@ namespace Eft.Provider
         List<Element> Find(string selectorString);
         List<Element> Find(Selector selector);
         List<Element> FindChildren(SimpleSelector simpleSelector);
-        List<Element> Find(SimpleSelector simpleSelector);
+        List<Element> FindDescendents(SimpleSelector simpleSelector);
     }
 }
