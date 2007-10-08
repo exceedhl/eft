@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     Title="Stub" SizeToContent="WidthAndHeight">
   <StackPanel>
-    <Button x:Name="openNewWindow">Open new window</Button>
+    <Button x:Name="openWindowTestWindow">Open window test window</Button>
     <Button x:Name="openTextTestWindow">Open text test window</Button>
     <Button x:Name="openClickTestWindow">Open click test window</Button>
     

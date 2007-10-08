@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Automation;
@@ -66,25 +67,44 @@ namespace Eft.Provider
         {
             get
             {
-                return
-                    (bool) automationElement.GetCurrentPropertyValue(AutomationElement.IsWindowPatternAvailableProperty);
+                ControlType controlType = (ControlType) automationElement.GetCurrentPropertyValue(AutomationElement.ControlTypeProperty);
+                return controlType == ControlType.Window;
+            }
+        }
+
+        private WindowPattern GetWindowPattern()
+        {
+            try
+            {
+                return (WindowPattern)automationElement.GetCurrentPattern(WindowPattern.Pattern);
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new OperationNotSupportedException("This element does not support window pattern", e);
             }
         }
 
         public void ChangeWindowState(WindowState windowState)
         {
-            WindowPattern pattern = (WindowPattern) automationElement.GetCurrentPattern(WindowPattern.Pattern);
-            switch (windowState)
+            WindowPattern pattern = GetWindowPattern();
+            try
             {
-                case WindowState.Maximized:
-                    pattern.SetWindowVisualState(WindowVisualState.Maximized);
-                    break;
-                case WindowState.Minimized:
-                    pattern.SetWindowVisualState(WindowVisualState.Minimized);
-                    break;
-                default:
-                    pattern.SetWindowVisualState(WindowVisualState.Normal);
-                    break;
+                switch (windowState)
+                {
+                    case WindowState.Maximized:
+                        pattern.SetWindowVisualState(WindowVisualState.Maximized);
+                        break;
+                    case WindowState.Minimized:
+                        pattern.SetWindowVisualState(WindowVisualState.Minimized);
+                        break;
+                    default:
+                        pattern.SetWindowVisualState(WindowVisualState.Normal);
+                        break;
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new OperationNotSupportedException("Can not resize this window", e);
             }
         }
 
@@ -155,7 +175,7 @@ namespace Eft.Provider
         {
             get
             {
-                WindowPattern pattern = (WindowPattern) automationElement.GetCurrentPattern(WindowPattern.Pattern);
+                WindowPattern pattern = GetWindowPattern();
                 switch (pattern.Current.WindowVisualState)
                 {
                     case WindowVisualState.Maximized:
@@ -176,7 +196,7 @@ namespace Eft.Provider
                     automationElement.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty);
                 if (boudingRect == AutomationElement.NotSupported)
                 {
-                    throw new NotSupportedPropertyException("Can not get bounding rectangle of this element");
+                    throw new PropertyNotSupportedException("Can not get bounding rectangle of this element");
                 }
                 return (Rect) boudingRect;
             }

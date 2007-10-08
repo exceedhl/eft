@@ -26,8 +26,10 @@ namespace FunctionalTest
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             Application app = Application.Run(fileName);
             Window mainWindow = app.FindTopWindow("Stub");
-            mainWindow.FindFirst("#openNewWindow").Click();
-            mainWindow.FindFirst("#openNewWindow").Click();
+            mainWindow.FindFirst("#openWindowTestWindow").Click();
+            Window windowTestWindow = app.FindTopWindow("Window test window");
+            windowTestWindow.FindFirst("#openNewWindow").Click();
+            windowTestWindow.FindFirst("#openNewWindow").Click();
             Assert.IsNotNull(app.FindTopWindow("new window 0"));
             Assert.IsNotNull(app.FindTopWindow("new window 1"));
             app.Stop();
