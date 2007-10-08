@@ -67,7 +67,8 @@ namespace Eft.Provider
         {
             get
             {
-                ControlType controlType = (ControlType) automationElement.GetCurrentPropertyValue(AutomationElement.ControlTypeProperty);
+                ControlType controlType =
+                    (ControlType) automationElement.GetCurrentPropertyValue(AutomationElement.ControlTypeProperty);
                 return controlType == ControlType.Window;
             }
         }
@@ -76,7 +77,7 @@ namespace Eft.Provider
         {
             try
             {
-                return (WindowPattern)automationElement.GetCurrentPattern(WindowPattern.Pattern);
+                return (WindowPattern) automationElement.GetCurrentPattern(WindowPattern.Pattern);
             }
             catch (InvalidOperationException e)
             {
@@ -155,7 +156,7 @@ namespace Eft.Provider
             Focus();
             SendKeys.SendWait(text);
         }
-        
+
         public WindowState WindowState
         {
             get
@@ -222,9 +223,9 @@ namespace Eft.Provider
 
         public override string ToString()
         {
-            return "[ControlType: " + automationElement.Current.LocalizedControlType + 
-                "; Name: " + Name + 
-                "; AutomationId: " + Id + "]";
+            return "[ControlType: " + automationElement.Current.LocalizedControlType +
+                   "; Name: " + Name +
+                   "; AutomationId: " + Id + "]";
         }
     }
 }

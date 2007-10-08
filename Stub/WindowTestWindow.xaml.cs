@@ -8,6 +8,7 @@ namespace stub
     public partial class WindowTestWindow
     {
         private static int windowCount = 0;
+
         public WindowTestWindow()
         {
             InitializeComponent();
