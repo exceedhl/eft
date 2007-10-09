@@ -36,14 +36,5 @@ namespace Eft
             Assert.IsFalse(Match.Regex("aaaa", "ab"));
             Assert.IsTrue(Match.Regex("", ".*"));
         }
-
-        [Test]
-        public void test_exact_match()
-        {
-            Assert.IsTrue(Match.Exact("ab", "ab"));
-            Assert.IsFalse(Match.Exact("ab", "ba"));
-            Assert.IsFalse(Match.Exact("ab", "a"));
-            Assert.IsFalse(Match.Exact("ab", ""));
-        }
     }
 }

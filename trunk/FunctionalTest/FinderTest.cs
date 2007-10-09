@@ -48,8 +48,8 @@ namespace FunctionalTest
 
             Assert.AreEqual("new window 0", app.FindTopWindow("*window 0", Match.Glob).Text);
             Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0", Match.Glob).Text);
+            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0").Text);
             Assert.AreEqual("new window 0", app.FindTopWindow("^.*window 0", Match.Regex).Text);
-            Assert.AreEqual("new window 0", app.FindTopWindow("new window 0", Match.Exact).Text);
             app.Stop();
         }
 
