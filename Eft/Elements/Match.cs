@@ -19,8 +19,5 @@ namespace Eft.Elements
 
         public static readonly StringMatchDelegate Regex =
             delegate(string actual, string pattern) { return new Regex(pattern).Match(actual).Success; };
-
-        public static readonly StringMatchDelegate Exact =
-            delegate(string actual, string pattern) { return actual == pattern; };
     }
 }

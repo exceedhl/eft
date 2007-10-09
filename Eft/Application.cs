@@ -109,7 +109,7 @@ namespace Eft
 
         public Window FindTopWindow(string title, int maximumWaitingTimeInSeconds)
         {
-            return FindTopWindow(title, Match.Exact, maximumWaitingTimeInSeconds);
+            return FindTopWindow(title, Match.Glob, maximumWaitingTimeInSeconds);
         }
     }
 }
