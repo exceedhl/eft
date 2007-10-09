@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 
 namespace Eft.Elements
@@ -13,7 +12,6 @@ namespace Eft.Elements
                     pattern = pattern.Replace("*", ".*");
                     pattern = pattern.Replace("?", ".{0,1}");
                     pattern = "^" + pattern + "$";
-                    Console.WriteLine(pattern);
                     return new Regex(pattern).Match(actual).Success;
                 };
 

@@ -8,10 +8,11 @@ using Eft.Provider;
 
 namespace Eft.Elements
 {
+
     public class Element
     {
         private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
-        private const int WAIT_INTERVAL_IN_MILLIS = 100;
+        private const int WAIT_INTERVAL_IN_MILLIS = 10;
 
         protected readonly IAutomationProvider provider;
 
@@ -41,6 +42,13 @@ namespace Eft.Elements
                 return provider.Name;
             }
         }
+
+        public void Focus()
+        {
+            provider.Focus();
+        }
+
+        #region Click related operations
 
         public Point ClickablePoint
         {
@@ -89,6 +97,10 @@ namespace Eft.Elements
             provider.Click(point);
         }
 
+        #endregion
+
+        #region Text related operations
+
         public void Type(string text)
         {
             provider.Type(text);
@@ -104,6 +116,10 @@ namespace Eft.Elements
         {
             Type("{HOME}+{END}{DEL}");
         }
+
+        #endregion
+
+        #region Find elements
 
         internal List<Element> Find(Selector selector)
         {
@@ -150,9 +166,7 @@ namespace Eft.Elements
             return Find(selectorString, maximumWaitingTimeInSeconds)[0];
         }
 
-        public void Focus()
-        {
-            provider.Focus();
-        }
+        #endregion
+
     }
 }

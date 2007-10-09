@@ -10,6 +10,13 @@ namespace stub
             openWindowTestWindow.Click += OnOpenNewWindow;
             openTextTestWindow.Click += OnOpenTextTestWindow;
             openClickTestWindow.Click += OnOpenClickTestWindow;
+            openWaitForConditionTestWindow.Click += OnOpenWaitForConditionTestWindow;
+        }
+
+        private static void OnOpenWaitForConditionTestWindow(object sender, RoutedEventArgs e)
+        {
+            WaitForConditionTestWindow window = new WaitForConditionTestWindow();
+            window.Show();
         }
 
         private static void OnOpenClickTestWindow(object sender, RoutedEventArgs e)

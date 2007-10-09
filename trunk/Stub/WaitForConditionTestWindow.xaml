@@ -1,0 +1,10 @@
+﻿<Window x:Class="stub.WaitForConditionTestWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Wait for condition test window" Height="100" Width="100"
+    >
+  <StackPanel>
+    <TextBox Name="log">0</TextBox>
+    <Button Name="trigger" Content="Trigger"/>
+  </StackPanel>
+</Window>

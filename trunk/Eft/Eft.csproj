@@ -52,6 +52,7 @@
     <Compile Include="Elements\Desktop.cs" />
     <Compile Include="Elements\Match.cs" />
     <Compile Include="Elements\MouseButton.cs" />
+    <Compile Include="Elements\Wait.cs" />
     <Compile Include="Elements\WindowState.cs" />
     <Compile Include="Exception\ControlTypeConversionException.cs" />
     <Compile Include="Exception\ElementSearchException.cs" />
