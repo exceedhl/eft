@@ -6,6 +6,7 @@
     <Button x:Name="openWindowTestWindow">Open window test window</Button>
     <Button x:Name="openTextTestWindow">Open text test window</Button>
     <Button x:Name="openClickTestWindow">Open click test window</Button>
+    <Button x:Name="openWaitForConditionTestWindow">Open wait for condition test window</Button>
     
   </StackPanel>
 </Window>

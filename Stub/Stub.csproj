@@ -31,6 +31,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -40,6 +41,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaitForConditionTestWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>WaitForConditionTestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowTestWindow.xaml.cs">
       <DependentUpon>WindowTestWindow.xaml</DependentUpon>
@@ -61,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
+    <Page Include="WaitForConditionTestWindow.xaml" />
     <Page Include="WindowTestWindow.xaml" />
     <Page Include="TextTestWindow.xaml" />
     <Page Include="ClickTestWindow.xaml" />
