@@ -49,6 +49,7 @@ namespace FunctionalTest
             Assert.AreEqual("Right Released", logText.Text);
         }
 
+        //todo: fix the problem: not all points in bounding rectangle are clickable
         [Test]
         [Ignore("it's failed because currently I can not get the clickable area.")]
         public void click_at_some_point_of_an_element()

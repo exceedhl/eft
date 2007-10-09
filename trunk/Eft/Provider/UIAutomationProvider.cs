@@ -63,6 +63,32 @@ namespace Eft.Provider
             get { return automationElement.GetClickablePoint(); }
         }
 
+        public bool IsChecked
+        {
+            get
+            {
+                try
+                {
+                    TogglePattern togglePattern =
+                        (TogglePattern) automationElement.GetCurrentPattern(TogglePattern.Pattern);
+                    return togglePattern.Current.ToggleState == ToggleState.On;
+                }
+                catch (InvalidOperationException)
+                {
+                    try
+                    {
+                        SelectionItemPattern selectionItemPattern =
+                            (SelectionItemPattern) automationElement.GetCurrentPattern(SelectionItemPattern.Pattern);
+                        return selectionItemPattern.Current.IsSelected;
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        throw new PropertyNotSupportedException("Current element does not support this property", e);
+                    }
+                }
+            }
+        }
+
         public bool IsWindow
         {
             get

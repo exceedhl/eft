@@ -14,7 +14,7 @@ namespace Eft.Elements
             int elaspedTime = 0;
             while (!conditionCheckerDelegate())
             {
-                if (elaspedTime > maximumWaitingTimeInSeconds * 1000)
+                if (elaspedTime > maximumWaitingTimeInSeconds*1000)
                 {
                     return;
                 }
@@ -28,7 +28,7 @@ namespace Eft.Elements
             int elaspedTime = 0;
             while (!conditionCheckerDelegate())
             {
-                if (elaspedTime > MAXIMUM_WAIT_TIME_IN_SEC * 1000)
+                if (elaspedTime > MAXIMUM_WAIT_TIME_IN_SEC*1000)
                 {
                     return;
                 }
