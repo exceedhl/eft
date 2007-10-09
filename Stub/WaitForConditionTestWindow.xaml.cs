@@ -21,7 +21,6 @@ namespace stub
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             dispatcherTimer.Start();
-
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -30,6 +29,5 @@ namespace stub
             log.Text = invokeCount++.ToString();
             CommandManager.InvalidateRequerySuggested();
         }
-
     }
 }

@@ -8,7 +8,6 @@ using Eft.Provider;
 
 namespace Eft.Elements
 {
-
     public class Element
     {
         private const int MAXIMUM_WAIT_TIME_IN_SEC = 30;
@@ -46,6 +45,16 @@ namespace Eft.Elements
         public void Focus()
         {
             provider.Focus();
+        }
+
+        public bool IsSelected
+        {
+            get { return IsChecked; }
+        }
+
+        public bool IsChecked
+        {
+            get { return provider.IsChecked; }
         }
 
         #region Click related operations
@@ -167,6 +176,5 @@ namespace Eft.Elements
         }
 
         #endregion
-
     }
 }

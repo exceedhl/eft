@@ -16,18 +16,44 @@
         </Button>
         <CheckBox Name="checkBox">check box</CheckBox>
         <RadioButton Name="radioButton">radio button</RadioButton>
+        <RadioButton Name="radioButton2">radio button 2</RadioButton>
         <Expander Header="expander header" Name="expander"/>
 
-        <ComboBox>
+        <ComboBox Name="comboBox">
           <ComboBoxItem Name="comboBoxItem">item 1</ComboBoxItem>
+          <ComboBoxItem Name="comboBoxItem2">item 2</ComboBoxItem>
         </ComboBox>
 
         <ListBox SelectionMode="Extended">
           <ListBoxItem Name="listBoxItem">list box item</ListBoxItem>
           <ListBoxItem Name="listBoxItem2">list box item2</ListBoxItem>
         </ListBox>
-        
-        
+
+        <ListView Name="listView">
+          <ListView.View>
+            <GridView>
+              <GridViewColumn DisplayMemberBinding=
+                                "{Binding Path=Col0}" 
+                              Header="Col1"/>
+              <GridViewColumn DisplayMemberBinding=
+                                "{Binding Path=Col1}" 
+                              Header="Col2"/>
+            </GridView>
+          </ListView.View>
+        </ListView>
+
+        <TabControl Name="tab" TabStripPlacement="Top" Margin="0, 0, 0, 10">
+          <TabItem Name="tab1" Header="Tab1">
+            <TabItem.Content>tab1 content</TabItem.Content>
+          </TabItem>
+
+          <TabItem Name="tab2" Header="Tab2">
+            <TabItem.Content>tab2 content</TabItem.Content>
+          </TabItem>
+        </TabControl>
+
+
+
       </StackPanel>
     </GroupBox>
   </DockPanel>

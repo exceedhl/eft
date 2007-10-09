@@ -22,6 +22,8 @@ namespace Eft.Provider
         void Click(Point point);
         Point ClickablePoint { get; }
 
+        bool IsChecked { get; }
+
         void Focus();
         void Type(string text);
         List<Element> Find(string selectorString);
