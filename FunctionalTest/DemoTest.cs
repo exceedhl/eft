@@ -27,7 +27,7 @@ namespace FunctionalTest
             contact.Click();
             contact.RightClick();
             contactListWindow.FindFirst("#miCreateNote").Click();
-            Window contactNoteWindow = client.FindTopWindow("*Rogerio Chequer", Match.Glob);
+            Window contactNoteWindow = client.FindTopWindow("*Rogerio Chequer");
             contactNoteWindow.FindFirst("#textContainer").Type("some note");
             contactNoteWindow.FindFirst("#userField").Type("Marc Mcneill");
             contactNoteWindow.FindFirst("#btnSave").Click();
