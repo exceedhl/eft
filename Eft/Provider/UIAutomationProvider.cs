@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Automation;
-using System.Windows.Forms;
 using System.Windows.Input;
 using Eft.Elements;
 using Eft.Exception;
@@ -175,12 +174,6 @@ namespace Eft.Provider
         public void Click(Point point)
         {
             Mouse.MoveToAndClick(point);
-        }
-
-        public void Type(string text)
-        {
-            Focus();
-            SendKeys.SendWait(text);
         }
 
         public WindowState WindowState

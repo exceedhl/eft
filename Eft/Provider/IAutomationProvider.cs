@@ -25,7 +25,6 @@ namespace Eft.Provider
         bool IsChecked { get; }
 
         void Focus();
-        void Type(string text);
         List<Element> Find(string selectorString);
         List<Element> Find(Selector selector);
         List<Element> FindChildren(SimpleSelector simpleSelector);
