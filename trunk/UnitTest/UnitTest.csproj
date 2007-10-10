@@ -65,6 +65,10 @@
       <Project>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</Project>
       <Name>Eft</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tester\Eft.Tester.csproj">
+      <Project>{44418D07-02A2-42F3-9490-772C1FE835B7}</Project>
+      <Name>Eft.Tester</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

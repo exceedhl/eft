@@ -36,5 +36,13 @@ namespace FunctionalTest
             Wait.Until(delegate { return log.Text == "2"; });
             Assert.AreEqual("2", log.Text);
         }
+
+        [Test]
+        public void wait_for_something_change()
+        {
+            window.FindFirst("#trigger").Click();
+            Wait.UntilChanged(delegate { return log.Text; });
+            Assert.AreEqual("0", log.Text);
+        }
     }
 }

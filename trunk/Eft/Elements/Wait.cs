@@ -9,6 +9,8 @@ namespace Eft.Elements
 
         public delegate bool ConditionCheckerDelegate();
 
+        public delegate object GetObjectValueDelegate();
+
         public static void Until(ConditionCheckerDelegate conditionCheckerDelegate, int maximumWaitingTimeInSeconds)
         {
             int elaspedTime = 0;
@@ -23,10 +25,10 @@ namespace Eft.Elements
             }
         }
 
-        public static void Until(ConditionCheckerDelegate conditionCheckerDelegate)
+        public static void Until(ConditionCheckerDelegate d)
         {
             int elaspedTime = 0;
-            while (!conditionCheckerDelegate())
+            while (!d())
             {
                 if (elaspedTime > MAXIMUM_WAIT_TIME_IN_SEC*1000)
                 {
@@ -35,6 +37,17 @@ namespace Eft.Elements
                 Thread.Sleep(WAIT_INTERVAL_IN_MILLIS);
                 elaspedTime += WAIT_INTERVAL_IN_MILLIS;
             }
+        }
+
+        public static void UntilChanged(GetObjectValueDelegate d, int maximumWaitingTimeInSeconds)
+        {
+            object oldValue = d();
+            Until(delegate { return oldValue != d(); }, maximumWaitingTimeInSeconds);
+        }
+
+        public static void UntilChanged(GetObjectValueDelegate d)
+        {
+            UntilChanged(d, MAXIMUM_WAIT_TIME_IN_SEC);
         }
     }
 }

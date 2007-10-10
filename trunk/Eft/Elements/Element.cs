@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Eft.Exception;
 using Eft.Locators.Selectors;
@@ -112,13 +113,14 @@ namespace Eft.Elements
 
         public void Type(string text)
         {
-            provider.Type(text);
+            Focus();
+            SendKeys.SendWait(text);
         }
 
         public void ClickAndType(string text)
         {
             Click();
-            provider.Type(text);
+            SendKeys.SendWait(text);
         }
 
         public void ClearText()

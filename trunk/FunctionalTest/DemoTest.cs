@@ -32,9 +32,7 @@ namespace FunctionalTest
             contactNoteWindow.FindFirst("#userField").Type("Marc Mcneill");
             contactNoteWindow.FindFirst("#btnSave").Click();
 
-//            string text = launcherWindow.FindFirst("#tbAlertsList").Text;
-//            int num = int.Parse(text.Substring(8, 1));
-//            num++;
+            Wait.UntilChanged(delegate { return launcherWindow.FindFirst("#tbAlertsList").Text; });
             launcherWindow.FindFirst("#btnLaunchAlertList").Click();
             Window alertWindow = client.FindTopWindow("Alerts");
             alertWindow.FindFirst(".AlertDisplayControl:first-of-type").Click();
@@ -43,6 +41,37 @@ namespace FunctionalTest
             client.Stop();
             server.Stop();
         }
+
+        [Test]
+        [Ignore]
+        public void send_email_contact_note()
+        {
+            Application server =
+                Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Connect.Server.exe");
+            Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
+
+            Element launcherWindow = client.FindTopWindow("Launcher Window");
+            launcherWindow.FindFirst("#btnLaunchContactList").Click();
+
+            Element contactListWindow = client.FindTopWindow("My contact list");
+            contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
+            contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
+            contactListWindow.FindFirst("#contactOrUserTabControl [name='Rogerio']").Click();
+            contactListWindow.FindFirst("#btnAddSelectedContact").Click();
+            Element contact = contactListWindow.FindFirst("#tcMyContactLists [name='Rogerio']");
+            contact.Click();
+            contact.RightClick();
+            contactListWindow.FindFirst("#miSendEmail").Click();
+            Window email = client.FindTopWindow("*Message*");
+            email.FindFirst("[name='Subject:']").ClickAndType("this is a subject");
+            email.FindFirst(".'Internet Explorer_Server'").ClickAndType("this is body");
+            email.FindFirst(".MsoCommandBar[name='Standard']").Click(15, 15);
+            email.FindFirst("[name='Macquarie Connect']").FindFirst(".Button[name='OK']").Click();
+
+            client.Stop();
+            server.Stop();
+        }
+
 
         [Test]
         public void click_calculator()
