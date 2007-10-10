@@ -1,6 +1,6 @@
 using System;
 
-namespace Eft
+namespace Eft.Tester
 {
     public class Tester
     {
