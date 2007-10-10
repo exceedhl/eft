@@ -1,4 +1,4 @@
-using Eft;
+using Eft.Tester;
 using NUnit.Framework;
 
 namespace FunctionalTest
