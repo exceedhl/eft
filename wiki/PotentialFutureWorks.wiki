@@ -1,15 +1,15 @@
-Improvement:
+=Improvement=
 
-Active Accessibility
+==Active Accessibility==
 Add support for Active Accessibility in current API to support Office series
 
-Sub-Projects:
+=Sub-Projects=
 
-Office Trojan 
+==Office Trojan==
 A Add-In for any application support IExtensibility2. Adapt their application object by .NET IPC remoting.
 
-Grid
+==Grid==
 Wrapper for the telent text interface of QEMU, and Trojan for windows, together form a api for controlling virtual machine and its operating system. A dedicated coordinator for running Nunit tests across the grid.
 
-DSL
+==DSL==
 a general line oriented, regular expression parser based framework. All syntax supported by plug-ins. add new language rule should be as easy as "login_as_username_by_password(string username, string password);", then we could use "login as taowen by 123"
