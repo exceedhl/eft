@@ -17,7 +17,7 @@ Assert.AreEqual("3. ", main.FindFirst("Edit").Text);
 
 }}}
 
-
+For more features in Eft, you can download the introduction [http://eft.googlecode.com/files/eft.ppt ppt] and have a look.
  
  
  
