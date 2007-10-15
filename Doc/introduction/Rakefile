@@ -1,0 +1,155 @@
+require 'rubygems'
+require 'fileutils'
+require 'rake/clean'
+require 'RedCloth'
+
+$dist = 'dist'
+$presentation_name = "eft"
+$presentation = "#{$dist}/#{$presentation_name}"
+
+task :default => :presentation
+
+CLEAN.include($dist)
+
+class SlideGenerator
+
+  def initialize(slide_src, html_output) 
+    @slide_src = slide_src
+    @html_output = html_output
+    init_slide
+  end
+  
+  def init_slide(options = nil)
+    @current_slide_content = ""
+    @current_slide_options = {}
+    @current_slide_options['class'] = 'slide'
+    if options
+      (slide_class, slide_id) = options.split('#').collect { |x| x == "" ? nil : x } 
+      @current_slide_options['class'] = slide_class if slide_class
+      @current_slide_options['id'] = slide_id if slide_id
+    end
+  end
+
+  def generate 
+    @html_output.puts <<EOF
+    <?xml version="1.0"?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+      <head>
+      <title>Eft</title>
+  <link rel="stylesheet" href="slidy/show.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="slidy/print.css" type="text/css" media="print" />
+  <link rel="stylesheet" href="slides.css" type="text/css" />
+  <link rel="stylesheet" href="syntaxhighlighter/SyntaxHighlighter.css" type="text/css" />
+  <script src="slidy/slidy.js" type="text/javascript"></script>
+  <script src="syntaxhighlighter/shCore.js" type="text/javascript"></script>
+  <script src="syntaxhighlighter/shBrushCSharp.js" type="text/javascript"></script>
+  <script src="syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+</head>
+<body>
+EOF
+    generate_slides
+    @html_output.puts <<EOF
+	<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</body>
+</html>
+EOF
+  end
+
+  def formatted_slide_options
+    s = %{}
+    @current_slide_options.each do |key,value|
+      s << %{ #{key}="#{value}"}
+    end
+    s
+  end
+
+  def write_current_slide 
+    return if @current_slide_content.empty?
+    @html_output.puts %{<div#{formatted_slide_options}>}
+    @html_output.puts RedCloth.new(@current_slide_content).to_html
+    @html_output.puts %{</div>}
+  end
+
+  def generate_slides
+    @slide_src.each_line do |line|
+      
+      if line =~ %r{^====(\((.*)\))?}
+        write_current_slide
+        init_slide($2)
+      else 
+        @current_slide_content << line
+      end
+      
+    end
+    write_current_slide
+  end
+
+end
+
+def compile_slides(src_filename, output_filename)
+  puts "slides: #{src_filename} -> #{output_filename}"
+  File.open(output_filename, 'w') do |output| 
+    SlideGenerator.new(File.open(src_filename), output).generate
+  end
+end
+
+def textile_to_html(input_filename, output_filename)
+  puts "textile: #{input_filename} -> #{output_filename}"
+  File.open(input_filename, 'r') do |input| 
+    File.open(output_filename, 'w') do |output| 
+      output.puts RedCloth.new(input.read).to_html
+    end
+  end
+end
+
+FileList['content/**/*'].each do |src|
+  next if File.directory?(src)
+  dest = src.sub(%r{^content}, $presentation)
+  dest_dir = File.dirname(dest)
+  directory dest_dir
+
+  case src
+
+  when %r{\.slides}
+    dest.sub!(/slides$/, 'html')
+    file dest => [src, dest_dir] do
+      mkdir_p File.dirname(dest)
+      compile_slides(src, dest)
+    end
+    
+  when %r{\.textile}
+    dest.sub!(/textile$/, 'html')
+    file dest => [src, dest_dir] do
+      mkdir_p File.dirname(dest)
+      textile_to_html(src, dest)
+    end
+    
+  else
+    file dest => [src, dest_dir] do
+      cp(src, dest)
+    end
+
+  end
+  
+  task :presentation => dest
+end
+
+task :serve => :presentation do
+  require 'webrick'
+  include WEBrick
+  
+  s = HTTPServer.new(:Port => 3333)
+  s.mount "/", HTTPServlet::FileHandler, $presentation
+  trap("INT"){ s.shutdown }
+  s.start
+end 
+
+task :package => :presentation do
+  chdir($dist) do
+    sh %{tar -cvzf #{$presentation_name}.tar.gz #{$presentation_name}}
+  end
+end

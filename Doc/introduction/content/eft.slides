@@ -1,0 +1,200 @@
+====(slide cover)
+
+h1. an <span style="color:blue;margin-right:-0.2em">E</span> asy <span style="color:red;margin-right:-0.2em">F</span> unctional <span style="color:green;margin-right:-0.2em">T</span> esting tool
+
+h4. _A better approach to test windows application_
+
+====(#about eft)
+
+p. A simple, easy to use yet powerful tool for Windows application functional testing
+
+====(#code)
+
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+Application app = Application.Run("calc");
+Window main = app.FindTopWindow("Calculator");
+
+main.FindFirst("[name='1']").Click();
+main.FindFirst("[name='+']").Click();
+main.FindFirst("[name='2']").Click();
+main.FindFirst("[name='=']").Click();
+
+Assert.AreEqual("3. ", main.FindFirst("Edit");
+</pre>
+
+====(#element)
+p. Everything in a Window application is an Element
+
+====(#find)
+p. Find Element using CSS syntax selector
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+element.FindFirst("#id");
+window.FindFirst(".RICHEDIT50W");
+element.FindFirst("[name='0']");
+window.FindFirst("MenuItem[name='Help']");
+window.FindFirst("MenuItem[name='Help'] < MenuItem:last-of-type");
+window.FindFirst("MenuItem[name='Help'] MenuItem:nth-of-type(3)");
+window.FindFirst("Window[name='About WordPad']");
+window.FindFirst("MenuItem[name='Help']");
+window.FindFirst("MenuItem[name='Help'] MenuItem:last-of-type");
+
+</pre>
+
+====(#find window)
+p. How to find window?
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+Application app = Application.Run("calc");
+Window window = app.FindTopWindows()[0];
+window = app.FindTopWindow("Calculator");
+
+</pre>
+
+====(#pattern matching)
+p. Pattern matching
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+app.FindTopWindow("*window 0", Match.Glob);
+app.FindTopWindow("?ew window 0", Match.Glob);
+app.FindTopWindow("?ew window 0");
+app.FindTopWindow("^.*window 0", Match.Regex);
+app.FindTopWindow("new window 0", Match.Exact);
+
+</pre>
+
+====(#action)
+p. You can do anything you want on an Element
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+element.Click();
+element.Click(15, 15);
+element.CtrlClick();
+element.ShiftClick();
+element.DbClick();
+element.Click(MouseButton.Middle, ModiferKeys.Alt, 3);
+
+</pre>
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+element.Type("something");
+element.ClickAndType("text");
+element.ClearText();
+Assert.AreEqual("text", element.Text);
+
+</pre>
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+element.Focus();
+Assert.AreEqual("id", element.Id);
+Assert.AreEqual("id", element.Name);
+Assert.IsTrue(element.IsSelected);
+
+</pre>
+
+====(#controls)
+p. How about controls?
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+stubWindow.Maximize();
+Assert.AreEqual(WindowState.Maximized, stubWindow.WindowState);
+stubWindow.Minimize();
+Assert.AreEqual(WindowState.Minimized, stubWindow.WindowState);
+stubWindow.Restore();
+Assert.AreEqual(WindowState.Normal, stubWindow.WindowState);
+
+</pre>
+
+====(#controls)
+p. will have more controls if necessary...
+
+* Table
+* ...
+
+====(#wait)
+p. Wait...
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+window.FindFirst("#trigger").Click();
+Wait.Until(delegate { return log.Text == "2"; });
+
+Wait.UntilChanged(delegate { return log.Text; });
+
+</pre>
+
+====(#mouse, keyboard)
+p. Control mouse and keyboard in a more flexible way
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+Point pt = new Point(3, 3);
+Mouse.Click(pt);
+Mouse.LeftButtonUp(pt);
+Mouse.SendMouseInput(3, 3, 0, SendMouseInputFlags.XDown);
+
+Keyboard.SendUnicodeString("some text");
+
+</pre>
+
+====(#future)
+p. Future work
+
+====(#high level api)
+p. How do you feel about this code:
+
+====(#code)
+<pre name="code" class="html:nocontrols:nogutter:c-sharp">
+
+Tester i = Tester.Run("Clac");
+
+i.SelectWindow("window title");
+i.Click("#button", "^{Left 3}");
+i.Type("#textBox", "some text");
+i.AssertTextPresent("some text");
+i.AssertWindowTitle("window title");
+
+i.SelectWindow("another");
+
+i.Retire();
+
+</pre>
+
+
+====(#more)
+
+* Support more operations on Element and Controls
+* Support command line testing
+* A scripting language and interpreter
+* Distributed runner
+* Recorder
+
+====(#help)
+
+h3. Need your help to test Eft for :
+
+* different Windows version
+* different hardware environment
+* virtual machine
+* stability
+* ...
+
+====(#link)
+
+p. "http://eft.googlecode.com":http://eft.googlecode.com
