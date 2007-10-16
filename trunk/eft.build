@@ -3,6 +3,9 @@
   <property name="basedir" value="." />
   <property name="reports.dir" value="${basedir}/reports" />
   
+  <property name="package.dir" value="${basedir}/package" />
+  <property name="package.content.dir" value="${package.dir}/content" />
+  
   <property name="solution.file" value="${basedir}\eft.sln" />
   
   <property name="unit.test.dll" value="${basedir}/UnitTest/bin/debug/UnitTest.dll" />
@@ -17,10 +20,14 @@
     <delete>
       <fileset>
         <include name="${reports.dir}/**"/>
+        <include name="${package.dir}/**"/>
       </fileset>
     </delete>
     <msbuild project="${solution.file}" target="Clean" verbosity="Normal" >
       <arg line="/p:Configuration=Debug"/>
+    </msbuild>
+    <msbuild project="${solution.file}" target="Clean" verbosity="Normal" >
+      <arg line="/p:Configuration=Release"/>
     </msbuild>
   </target>
 
@@ -29,6 +36,13 @@
       <arg line="/p:Configuration=Debug"/>
     </msbuild>
   </target>
+
+  <target name="-build.release">
+    <msbuild project="${solution.file}" target="Build" verbosity="Normal" >
+      <arg line="/p:Configuration=Release"/>
+    </msbuild>
+  </target>
+
 
   <target name="-unit.test">
     <mkdir dir="${reports.dir}"/>
@@ -50,9 +64,22 @@
     </exec>
   </target>
 
+  <target name="-package">
+    <mkdir dir="${package.dir}"/>
+    <copy todir="${package.content.dir}" file="${basedir}/Eft/bin/release/Eft.dll" />
+    <copy todir="${package.content.dir}" file="${basedir}/license.txt" />
+
+    <zip zipfile="${package.dir}/eft.zip">
+      <fileset basedir="${package.content.dir}/">
+        <include name="**/*" />
+      </fileset>
+    </zip>
+  </target>
+
   <target name="clean" depends="-clean" descripton="clean all"/>
   <target name="build" depends="-build" descripton="build all"/>
   <target name="all" depends="-clean, -build, -unit.test, -functional.test" descripton="all"/>
   <target name="ft" depends="-clean, -build, -functional.test" descripton="ft"/>
+  <target name="package" depends="-clean, -build.release, -package" descripton="package"/>
 
 </project>

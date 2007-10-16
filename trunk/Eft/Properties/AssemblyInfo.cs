@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle("wat")]
+[assembly: AssemblyTitle("eft")]
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyConfiguration("")]
-[assembly : AssemblyCompany("ThoughtWorks")]
-[assembly : AssemblyProduct("wat")]
-[assembly : AssemblyCopyright("Copyright © ThoughtWorks 2007")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("eft")]
+[assembly: AssemblyCopyright("")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
 
