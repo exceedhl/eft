@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<project name="Evolve" default="all" basedir=".">
+  <property name="basedir" value="." />
+  <property name="reports.dir" value="${basedir}/reports" />
+  
+  <property name="solution.file" value="${basedir}\eft.sln" />
+  
+  <property name="unit.test.dll" value="${basedir}/UnitTest/bin/debug/UnitTest.dll" />
+  <property name="unit.test.report" value="${reports.dir}\TestReport-Unit.xml" />
+  
+  <property name="func.test.dll" value="${basedir}/FunctionalTest/bin/debug/FunctionalTest.dll" />
+  <property name="func.test.report" value="${reports.dir}\TestReport-Functional.xml" />
+
+  <loadtasks assembly="${basedir}\library\nant\NAnt.Contrib.Tasks.dll" />
+
+  <target name="-clean">
+    <delete>
+      <fileset>
+        <include name="${reports.dir}/**"/>
+      </fileset>
+    </delete>
+    <msbuild project="${solution.file}" target="Clean" verbosity="Normal" >
+      <arg line="/p:Configuration=Debug"/>
+    </msbuild>
+  </target>
+
+  <target name="-build">
+    <msbuild project="${solution.file}" target="Build" verbosity="Normal" >
+      <arg line="/p:Configuration=Debug"/>
+    </msbuild>
+  </target>
+
+  <target name="-unit.test">
+    <mkdir dir="${reports.dir}"/>
+    <exec program="library\nunit\nunit-console.exe">
+      <arg value="${unit.test.dll}"/>
+      <arg value="/xml=${unit.test.report}"/>
+      <arg value="/nologo"/>
+      <arg value="/noshadow"/>
+    </exec>
+  </target>
+
+  <target name="-functional.test">
+    <mkdir dir="${reports.dir}"/>
+    <exec program="library\nunit\nunit-console.exe">
+      <arg value="${func.test.dll}"/>
+      <arg value="/xml=${func.test.report}"/>
+      <arg value="/nologo"/>
+      <arg value="/noshadow"/>
+    </exec>
+  </target>
+
+  <target name="clean" depends="-clean" descripton="clean all"/>
+  <target name="build" depends="-build" descripton="build all"/>
+  <target name="all" depends="-clean, -build, -unit.test, -functional.test" descripton="all"/>
+  <target name="ft" depends="-clean, -build, -functional.test" descripton="ft"/>
+
+</project>

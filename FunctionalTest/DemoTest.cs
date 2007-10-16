@@ -83,7 +83,9 @@ namespace FunctionalTest
             window.FindFirst("*[name='+']").Click();
             window.FindFirst("[name='2']").Click();
             window.FindFirst("[name='=']").Click();
-            Assert.AreEqual("3. ", window.FindFirst("Edit").Text);
+            Element editBox = window.FindFirst("Edit");
+            Wait.Until(delegate { return editBox.Text == "3. "; });
+            Assert.AreEqual("3. ", editBox.Text);
 
             app.Stop();
         }
