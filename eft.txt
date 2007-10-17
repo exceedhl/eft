@@ -4,7 +4,7 @@ other related tools
 resource group and link
 
 legal issue
-blog
+blog - domain name, space
 notification email
 docs
 
