@@ -125,6 +125,7 @@ namespace Eft.Elements
 
         public void ClearText()
         {
+            Click();
             Type("{HOME}+{END}{DEL}");
         }
 
