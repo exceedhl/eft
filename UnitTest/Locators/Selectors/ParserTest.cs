@@ -123,7 +123,7 @@ namespace Eft.Locators.Selectors
 
         [Test]
         [ExpectedException(typeof (SelectorParsingException),
-            "type[error] is not a legal selector string")]
+           ExpectedMessage = "type[error] is not a legal selector string")]
         public void should_throw_exception_if_attribute_illegal()
         {
             parser.Parse("type[error]");
@@ -199,7 +199,7 @@ namespace Eft.Locators.Selectors
         }
 
         [Test]
-        [ExpectedException(typeof (SelectorParsingException), "Selector can not be empty")]
+        [ExpectedException(typeof(SelectorParsingException), ExpectedMessage = "Selector can not be empty")]
         public void should_throw_exception_if_passing_empty_string()
         {
             parser.Parse("  ");

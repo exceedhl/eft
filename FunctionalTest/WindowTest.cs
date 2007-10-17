@@ -47,7 +47,7 @@ namespace FunctionalTest
                 allWindows[0].Maximize();
                 Assert.Fail("exception expected");
             }
-            catch (OperationNotSupportedException e)
+            catch (OperationNotSupportedException)
             {
                 // pass
             }
@@ -57,7 +57,7 @@ namespace FunctionalTest
                 WindowState state = allWindows[0].WindowState;
                 Assert.Fail("exception expected");
             }
-            catch (OperationNotSupportedException e)
+            catch (OperationNotSupportedException)
             {
                 // pass
             }
@@ -78,7 +78,7 @@ namespace FunctionalTest
                 unresizableWindow.Maximize();
                 Assert.Fail("exception expected");
             }
-            catch (OperationNotSupportedException e)
+            catch (OperationNotSupportedException)
             {
                 // pass
             }
@@ -87,7 +87,7 @@ namespace FunctionalTest
                 unresizableWindow.Minimize();
                 Assert.Fail("exception expected");
             }
-            catch (OperationNotSupportedException e)
+            catch (OperationNotSupportedException)
             {
                 // pass
             }

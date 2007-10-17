@@ -69,7 +69,7 @@ namespace FunctionalTest
         }
 
         [Test]
-        [ExpectedException(typeof (PropertyNotSupportedException), "Current element does not support this property")]
+        [ExpectedException(typeof (PropertyNotSupportedException), ExpectedMessage = "Current element does not support this property")]
         public void should_throw_exception_if_not_supporting_toggle_pattern()
         {
             bool isChecked = window.FindFirst("#textBox").IsChecked;
