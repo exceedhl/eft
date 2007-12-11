@@ -32,6 +32,8 @@ distributed runner
 recorder
 commandline testing - for command line, wait for a command finishing execution
 interpreter and scripting language
+selenium rc like architecture to support any languages
+wireframe - test result generation
 
 bring window into foreground
 move and resize window
