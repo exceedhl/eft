@@ -17,7 +17,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openWaitForConditionTestWindow").Click();
             window = app.FindTopWindow("Wait for condition test window");
             log = window.FindFirst("#log");

@@ -1,3 +1,4 @@
+using System;
 using Eft.Exception;
 using Eft.Provider;
 
@@ -32,6 +33,16 @@ namespace Eft.Elements
         public void Restore()
         {
             provider.ChangeWindowState(WindowState.Normal);
+        }
+
+        public override string Text
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string Title
+        {
+            get { return base.Text; }
         }
     }
 }

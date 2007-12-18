@@ -31,7 +31,7 @@ namespace Eft.Elements
             get { return provider.Id; }
         }
 
-        public string Text
+        public virtual string Text
         {
             get
             {

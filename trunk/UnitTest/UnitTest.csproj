@@ -55,6 +55,7 @@
     <Compile Include="Locators\SelectorTranslatorTest.cs" />
     <Compile Include="MatchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testers\PatternRecoganizerTest.cs" />
     <Compile Include="TesterTest.cs" />
     <Compile Include="UIAutomationProviderTest.cs" />
     <Compile Include="Util\PrivateAccessor.cs" />

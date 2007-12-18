@@ -21,7 +21,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             Application app = Application.Run(fileName);
-            Assert.IsNotNull(app.FindTopWindow("Stub"));
+            Assert.IsNotNull(app.FindTopWindow("Stub*"));
             app.Stop();
         }
 

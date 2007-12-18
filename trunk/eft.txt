@@ -12,6 +12,7 @@ enhance text property to support more elements
 get all visible text from a window
 listbox, combobox item waiting - because they can be found initially but in order to click it you have to wait it shown after listbox is clicked.
 close window
+rdp to control resolution
 
 high level api
 viscript integration

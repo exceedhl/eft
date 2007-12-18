@@ -17,7 +17,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openTextTestWindow").Click();
             window = app.FindTopWindow("text test window");
         }
@@ -58,7 +58,7 @@ namespace FunctionalTest
         [Test]
         public void should_return_title_of_window_as_text()
         {
-            Assert.AreEqual("text test window", window.Text);
+            Assert.AreEqual("text test window", window.Title);
         }
 
         [Test]

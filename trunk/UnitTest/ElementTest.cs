@@ -44,7 +44,8 @@ namespace Eft
         }
 
         [Test]
-        [ExpectedException(typeof (ElementSearchException), ExpectedMessage = "1 seconds elapsed, no elements found: selector")]
+        [ExpectedException(typeof (ElementSearchException),
+            ExpectedMessage = "1 seconds elapsed, no elements found: selector")]
         public void wait_and_find_should_throw_exception_if_wait_time_out()
         {
             Expect.Call(mockProvider.Find("selector")).Return(new List<Element>()).Repeat.Any();
@@ -54,7 +55,7 @@ namespace Eft
         }
 
         [Test]
-        [ExpectedException(typeof(PropertyNotSupportedException), ExpectedMessage = "message")]
+        [ExpectedException(typeof (PropertyNotSupportedException), ExpectedMessage = "message")]
         public void should_throw_exception_if_provider_does_not_support_getting_bounding_rectangle()
         {
             Expect.Call(mockProvider.BoundingRectangle).Throw(new PropertyNotSupportedException("message"));
@@ -65,7 +66,7 @@ namespace Eft
 
         [Test]
         [ExpectedException(typeof (IllegalParameterException),
-           ExpectedMessage = "Specified click point is out of element's bounding rectangle")]
+            ExpectedMessage = "Specified click point is out of element's bounding rectangle")]
         public void should_throw_exception_if_offset_is_out_of_bounding()
         {
             Expect.Call(mockProvider.BoundingRectangle).Return(new Rect(0, 0, 10, 10));
