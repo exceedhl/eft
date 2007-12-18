@@ -3,12 +3,12 @@ using Eft.Elements;
 
 namespace Eft.Tester
 {
-    public class PatternRecoganizer
+    public class MatchPatternRecoganizer
     {
         private readonly string pattern;
         private readonly StringMatchDelegate match;
 
-        public PatternRecoganizer(string formattedPattern)
+        public MatchPatternRecoganizer(string formattedPattern)
         {
             foreach (FieldInfo field in typeof (Match).GetFields())
             {

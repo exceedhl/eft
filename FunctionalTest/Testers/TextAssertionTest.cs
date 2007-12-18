@@ -39,5 +39,18 @@ namespace FunctionalTest.Testers
         {
             i.AssertText("#textBlock", "exact:wrong text");
         }
+
+        [Test]
+        public void type_text()
+        {
+            i.AssertText("#textBox", "text box");
+            i.ClearText("#textBox");
+            i.Type("#textBox", "new value");
+            i.AssertText("#textBox", "new value");
+            i.ClearText("#textBox");
+            i.ClickAndType("#textBox", "text");
+            i.AssertText("#textBox", "text");
+        }
+
     }
 }
