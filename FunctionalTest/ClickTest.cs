@@ -22,7 +22,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openClickTestWindow").Click();
             window = app.FindTopWindow("click test window");
             logText = window.FindFirst("#log");

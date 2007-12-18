@@ -12,14 +12,14 @@ namespace FunctionalTest
         public void evolve_test()
         {
             Application server =
-                Application.Run(@"C:\works\macsrc\trunk\build-output\server\Macquarie.Connect.Server.exe");
+                Application.Run(@"C:\works\mac\src\build-output\server\Macquarie.Connect.Server.exe");
             Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
 
             Element launcherWindow = client.FindTopWindow("Launcher Window");
             launcherWindow.FindFirst("#btnLaunchContactList").Click();
 
             Element contactListWindow = client.FindTopWindow("My contact list");
-            contactListWindow.FindFirst("#imgOpenGlobalContactList").Click();
+//            contactListWindow.FindFirst("#btOpenGlobalContactList").Click();
             contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
             contactListWindow.FindFirst("#contactOrUserTabControl [name='Rogerio']").Click();
             contactListWindow.FindFirst("#btnAddSelectedContact").Click();
@@ -29,7 +29,9 @@ namespace FunctionalTest
             contactListWindow.FindFirst("#miCreateNote").Click();
             Window contactNoteWindow = client.FindTopWindow("*Rogerio Chequer");
             contactNoteWindow.FindFirst("#textContainer").Type("some note");
-            contactNoteWindow.FindFirst("#userField").Type("Marc Mcneill");
+            contactNoteWindow.FindFirst("#inputBox").Type("Marc Mcneill");
+            contactNoteWindow.FindFirst("#cbSubType").Focus();
+            contactNoteWindow.Type("{DOWN}");
             contactNoteWindow.FindFirst("#btnSave").Click();
 
             Wait.UntilChanged(delegate { return launcherWindow.FindFirst("#tbAlertsList").Text; });

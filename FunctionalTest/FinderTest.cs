@@ -25,7 +25,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             Application app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openWindowTestWindow").Click();
             Window windowTestWindow = app.FindTopWindow("Window test window");
             windowTestWindow.FindFirst("#openNewWindow").Click();
@@ -40,17 +40,17 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             Application app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openWindowTestWindow").Click();
             Window windowTestWindow = app.FindTopWindow("Window test window");
             windowTestWindow.FindFirst("#openNewWindow").Click();
             windowTestWindow.FindFirst("#openNewWindow").Click();
 
-            Assert.AreEqual("new window 0", app.FindTopWindow("*window 0", Match.Glob).Text);
-            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0", Match.Glob).Text);
-            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0").Text);
-            Assert.AreEqual("new window 0", app.FindTopWindow("^.*window 0", Match.Regex).Text);
-            Assert.AreEqual("new window 0", app.FindTopWindow("new window 0", Match.Exact).Text);
+            Assert.AreEqual("new window 0", app.FindTopWindow("*window 0", Match.Glob).Title);
+            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0", Match.Glob).Title);
+            Assert.AreEqual("new window 0", app.FindTopWindow("?ew window 0").Title);
+            Assert.AreEqual("new window 0", app.FindTopWindow("^.*window 0", Match.Regex).Title);
+            Assert.AreEqual("new window 0", app.FindTopWindow("new window 0", Match.Exact).Title);
             app.Stop();
         }
 

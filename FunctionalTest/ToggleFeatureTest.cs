@@ -18,7 +18,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             app = Application.Run(fileName);
-            Window mainWindow = app.FindTopWindow("Stub");
+            Window mainWindow = app.FindTopWindow("Stub*");
             mainWindow.FindFirst("#openTextTestWindow").Click();
             window = app.FindTopWindow("text test window");
         }
@@ -69,7 +69,8 @@ namespace FunctionalTest
         }
 
         [Test]
-        [ExpectedException(typeof (PropertyNotSupportedException), ExpectedMessage = "Current element does not support this property")]
+        [ExpectedException(typeof (PropertyNotSupportedException),
+            ExpectedMessage = "Current element does not support this property")]
         public void should_throw_exception_if_not_supporting_toggle_pattern()
         {
             bool isChecked = window.FindFirst("#textBox").IsChecked;

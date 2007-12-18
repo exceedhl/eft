@@ -19,7 +19,7 @@ namespace FunctionalTest
         {
             string fileName = AppDomain.CurrentDomain.BaseDirectory + @"\Stub.exe";
             app = Application.Run(fileName);
-            stubWindow = app.FindTopWindow("Stub");
+            stubWindow = app.FindTopWindow("Stub*");
         }
 
         [Test]

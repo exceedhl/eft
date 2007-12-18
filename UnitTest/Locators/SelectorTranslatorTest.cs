@@ -39,7 +39,7 @@ namespace Eft.Locators
         }
 
         [Test]
-        [ExpectedException(typeof(SelectorTranslationException), ExpectedMessage = "Unknown element type Unknown")]
+        [ExpectedException(typeof (SelectorTranslationException), ExpectedMessage = "Unknown element type Unknown")]
         public void should_throw_exception_if_element_type_is_unrecoganizable()
         {
             ElementSelector selector = new ElementSelector("Unknown");
