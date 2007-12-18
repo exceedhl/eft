@@ -56,7 +56,9 @@
     <Compile Include="FinderTest.cs" />
     <Compile Include="LocatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testers\ClickTest.cs" />
     <Compile Include="Testers\SelectWindowTest.cs" />
+    <Compile Include="Testers\TextAssertionTest.cs" />
     <Compile Include="TextTest.cs" />
     <Compile Include="ToggleFeatureTest.cs" />
     <Compile Include="WaitForConditionTest.cs" />

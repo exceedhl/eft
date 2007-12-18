@@ -111,5 +111,10 @@ namespace Eft
         {
             return FindTopWindow(title, Match.Glob, maximumWaitingTimeInSeconds);
         }
+
+        public int WindowCount
+        {
+            get { return Desktop.FindTopWindowsByProcessId(process.Id).Count; }
+        }
     }
 }

@@ -1,0 +1,12 @@
+assertwindow number
+assert text
+window count?
+
+
+click:
+#  	Win (Windows logo key)
+! 	Alt
+^ 	Control
++ 	Shift
+
+<#|!|^|+>{Left | Middle | Right | XButton1 | XButton2 n}
