@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTest", "FunctionalTest\FunctionalTest.csproj", "{92DF45CB-EA87-4E35-B57A-F9718B827551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eft", "Eft\Eft.csproj", "{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eft.Core", "Eft\Eft.Core.csproj", "{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stub", "Stub\Stub.csproj", "{02B8B9E0-ED71-4425-A0C6-EFBAE2CFC50F}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		eft.build = eft.build
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eft.Interpreter", "Interpreter\Eft.Interpreter.csproj", "{AB36A761-7BB6-4659-855E-60D344E6810C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{44418D07-02A2-42F3-9490-772C1FE835B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44418D07-02A2-42F3-9490-772C1FE835B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44418D07-02A2-42F3-9490-772C1FE835B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB36A761-7BB6-4659-855E-60D344E6810C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB36A761-7BB6-4659-855E-60D344E6810C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB36A761-7BB6-4659-855E-60D344E6810C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB36A761-7BB6-4659-855E-60D344E6810C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

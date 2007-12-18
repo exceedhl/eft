@@ -66,9 +66,9 @@
     <Compile Include="WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Eft\Eft.csproj">
+    <ProjectReference Include="..\Eft\Eft.Core.csproj">
       <Project>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</Project>
-      <Name>Eft</Name>
+      <Name>Eft.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stub\Stub.csproj">
       <Project>{02B8B9E0-ED71-4425-A0C6-EFBAE2CFC50F}</Project>
