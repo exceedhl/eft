@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace FunctionalTest.Testers
 {
     [TestFixture]
-    public class SelectWindowTest
+    public class WindowRelatedTest
     {
         private Tester i;
 
@@ -59,6 +59,19 @@ namespace FunctionalTest.Testers
         public void should_throw_exception_if_title_pattern_not_match_actual_title()
         {
             i.AssertWindowTitle("wrong title");
+        }
+
+        [Test]
+        public void should_be_able_to_assert_window_count()
+        {
+            i.AssertWindowCount(1);
+        }
+
+        [Test]
+        [ExpectedException(typeof(AssertionException))]
+        public void should_throw_exception_if_window_count_not_match()
+        {
+            i.AssertWindowCount(0);
         }
 
     }

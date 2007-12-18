@@ -29,7 +29,7 @@ namespace Eft.Tester
 
         public void SelectWindow(string titlePattern)
         {
-            PatternRecoganizer recoganizer = new PatternRecoganizer(titlePattern);
+            MatchPatternRecoganizer recoganizer = new MatchPatternRecoganizer(titlePattern);
             currentWindow = app.FindTopWindow(recoganizer.Pattern, recoganizer.Match);
         }
 
@@ -49,6 +49,21 @@ namespace Eft.Tester
             currentWindow.FindFirst(locatorString).Click(recoganizer.MouseButton, recoganizer.ModifierKeys, recoganizer.Times);
         }
 
+        public void Type(string locatorString, string text)
+        {
+            currentWindow.FindFirst(locatorString).Type(text);
+        }
+
+        public void ClearText(string locatorString)
+        {
+            currentWindow.FindFirst(locatorString).ClearText();
+        }
+
+        public void ClickAndType(string locatorString, string text)
+        {
+            currentWindow.FindFirst(locatorString).ClickAndType(text);
+        }
+
         public void AssertTextPresent(string text)
         {
             throw new NotImplementedException();
@@ -56,7 +71,7 @@ namespace Eft.Tester
 
         public void AssertText(string locatorString, string pattern)
         {
-            PatternRecoganizer recoganizer = new PatternRecoganizer(pattern);
+            MatchPatternRecoganizer recoganizer = new MatchPatternRecoganizer(pattern);
             string actualText = currentWindow.FindFirst(locatorString).Text;
             Assert.IsTrue(recoganizer.Match(actualText, recoganizer.Pattern),
                           string.Format("Actual Text: [{0}] does not match pattern: [{1}]", actualText, pattern));
@@ -64,10 +79,25 @@ namespace Eft.Tester
 
         public void AssertWindowTitle(string titlePattern)
         {
-            PatternRecoganizer recoganizer = new PatternRecoganizer(titlePattern);
+            MatchPatternRecoganizer recoganizer = new MatchPatternRecoganizer(titlePattern);
             Assert.IsTrue(recoganizer.Match(currentWindow.Title, recoganizer.Pattern),
                           string.Format("Actual window title: [{0}] does not match pattern: [{1}]", currentWindow.Title,
                                         titlePattern));
+        }
+
+        public void AssertWindowCount(int expectedWindowCount)
+        {
+            Assert.AreEqual(expectedWindowCount, WindowCount);
+        }
+
+        public void AssertNotSelected(string locatorString)
+        {
+            Assert.IsFalse(currentWindow.FindFirst(locatorString).IsChecked, string.Format("Element {0} is checked or selected", locatorString));
+        }
+
+        public void AssertSelected(string locatorString)
+        {
+            Assert.IsTrue(currentWindow.FindFirst(locatorString).IsChecked, string.Format("Element {0} is not checked or selected", locatorString));
         }
     }
 }

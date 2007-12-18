@@ -28,7 +28,7 @@ namespace FunctionalTest.Testers
         {
             i.Click("#openClickTestWindow");
             Wait.UntilChanged(delegate { return i.WindowCount; });
-            Assert.AreEqual(2, i.WindowCount);
+            i.AssertWindowCount(2);
         }
 
         [Test]

@@ -10,15 +10,15 @@ namespace Eft.Testers
         [Test]
         public void should_recoganize_pattern_by_its_prefix()
         {
-            PatternRecoganizer recoganizer = new PatternRecoganizer("regex:regexPattern");
+            MatchPatternRecoganizer recoganizer = new MatchPatternRecoganizer("regex:regexPattern");
             Assert.AreEqual("regexPattern", recoganizer.Pattern);
             Assert.AreSame(recoganizer.Match, Match.Regex);
 
-            recoganizer = new PatternRecoganizer("glob:globPattern");
+            recoganizer = new MatchPatternRecoganizer("glob:globPattern");
             Assert.AreEqual("globPattern", recoganizer.Pattern);
             Assert.AreSame(recoganizer.Match, Match.Glob);
 
-            recoganizer = new PatternRecoganizer("exact:exactPattern");
+            recoganizer = new MatchPatternRecoganizer("exact:exactPattern");
             Assert.AreEqual("exactPattern", recoganizer.Pattern);
             Assert.AreSame(recoganizer.Match, Match.Exact);
         }
@@ -26,7 +26,7 @@ namespace Eft.Testers
         [Test]
         public void should_treat_it_glob_pattern_as_default()
         {
-            PatternRecoganizer recoganizer = new PatternRecoganizer("unknown:pattern");
+            MatchPatternRecoganizer recoganizer = new MatchPatternRecoganizer("unknown:pattern");
             Assert.AreEqual("unknown:pattern", recoganizer.Pattern);
             Assert.AreSame(recoganizer.Match, Match.Glob);
         }
