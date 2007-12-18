@@ -35,9 +35,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exception\WindowNotSpecifiedException.cs" />
+    <Compile Include="ClickPatternRecoganizer.cs" />
+    <Compile Include="Exception\IllegalClickPatternException.cs" />
     <Compile Include="PatternRecoganizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tester.cs" />
