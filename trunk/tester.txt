@@ -10,3 +10,52 @@ click:
 + 	Shift
 
 <#|!|^|+>{Left | Middle | Right | XButton1 | XButton2 n}
+
+pattern matching:
+regex:regexPattern
+exact:exactPattern
+(default)glob:globPattern
+
+Customized assertion:
+* assert and assert_not
+* assert and verify
+* assert all properties
+
+Wait action:
+* wait related to all properties
+* wait condition 
+* wait changed
+
+Tester:
+* pattern matching - programmatic way using core
+* action with scripting parameter
+* assertion
+ assertTextPresent, assertText, 
+* More specific wait
+* getter to avoid variable handling
+
+Script:
+* assert 
+* wait
+* action
+* getter?
+
+Proxy: 
+* getter
+* action
+(error reporting)
+
+===========
+
+launch "some.exe"
+select_window "window title"
+click 1
+assert_text #result 1
+click "Window[title='some window'] Button"
+click "App[id='3'] Window:first-of-type Button"
+wait_until_text_present "some text"
+wait_until_text_not_present "some text"
+wait_until_text_changed "#textbox"
+quit
+
+===========
