@@ -50,17 +50,17 @@
     <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElementTest.cs" />
-    <Compile Include="Locators\Selectors\ParserTest.cs" />
-    <Compile Include="Locators\SelectorTranslatorTest.cs" />
-    <Compile Include="MatchTest.cs" />
+    <Compile Include="Core\ElementTest.cs" />
+    <Compile Include="Core\Locators\Selectors\ParserTest.cs" />
+    <Compile Include="Core\Locators\SelectorTranslatorTest.cs" />
+    <Compile Include="Core\MatchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testers\ClickPatternRecoganizerTest.cs" />
     <Compile Include="Testers\PatternRecoganizerTest.cs" />
-    <Compile Include="TesterTest.cs" />
-    <Compile Include="UIAutomationProviderTest.cs" />
-    <Compile Include="Util\PrivateAccessor.cs" />
-    <Compile Include="WindowTest.cs" />
+    <Compile Include="Core\TesterTest.cs" />
+    <Compile Include="Core\UIAutomationProviderTest.cs" />
+    <Compile Include="Core\Util\PrivateAccessor.cs" />
+    <Compile Include="Core\WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eft\Eft.Core.csproj">

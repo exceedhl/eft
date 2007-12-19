@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Eft;
 using NUnit.Framework;
 
-namespace FunctionalTest
+namespace FunctionalTest.Core
 {
     [TestFixture]
     public class ApplicationTest

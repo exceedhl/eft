@@ -4,7 +4,7 @@ using Eft.Elements;
 using Eft.Win32;
 using NUnit.Framework;
 
-namespace FunctionalTest
+namespace FunctionalTest.Core
 {
     [TestFixture]
     public class TextTest

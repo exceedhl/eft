@@ -5,7 +5,7 @@ using Eft.Elements;
 using Eft.Exception;
 using NUnit.Framework;
 
-namespace FunctionalTest
+namespace FunctionalTest.Core
 {
     [TestFixture]
     public class ClickTest

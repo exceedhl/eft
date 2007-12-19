@@ -6,7 +6,7 @@ using Eft.Provider;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Eft
+namespace Eft.Core
 {
     [TestFixture]
     public class ElementTest
