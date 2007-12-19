@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eft</RootNamespace>
-    <AssemblyName>Eft</AssemblyName>
+    <AssemblyName>Eft.Core</AssemblyName>
     <StartupObject>
     </StartupObject>
   </PropertyGroup>

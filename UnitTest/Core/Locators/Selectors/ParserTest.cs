@@ -1,7 +1,8 @@
 using Eft.Exception;
+using Eft.Locators.Selectors;
 using NUnit.Framework;
 
-namespace Eft.Locators.Selectors
+namespace Eft.Core.Locators.Selectors
 {
     [TestFixture]
     public class ParserTest

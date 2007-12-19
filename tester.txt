@@ -44,6 +44,8 @@ Proxy:
 * getter
 * action
 (error reporting)
+- problems:
+* once api changed in the core, we don't want to change many places(multiple client drivers, interpreter and proxy, Tester)
 
 ===========
 
@@ -59,3 +61,7 @@ wait_until_text_changed "#textbox"
 quit
 
 ===========
+
+Server:
+* support one application - one connection
+* support many connections and many applicaitons

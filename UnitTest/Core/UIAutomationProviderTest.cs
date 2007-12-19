@@ -2,7 +2,7 @@ using System.Windows.Input;
 using Eft.Provider;
 using NUnit.Framework;
 
-namespace Eft
+namespace Eft.Core
 {
     [TestFixture]
     public class UIAutomationProviderTest

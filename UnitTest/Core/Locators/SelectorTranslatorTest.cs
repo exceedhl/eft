@@ -1,10 +1,11 @@
 using System.Windows.Automation;
 using Eft.Exception;
+using Eft.Locators;
 using Eft.Locators.Selectors;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Eft.Locators
+namespace Eft.Core.Locators
 {
     [TestFixture]
     public class SelectorTranslatorTest

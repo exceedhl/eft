@@ -50,25 +50,30 @@
     <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationTest.cs" />
-    <Compile Include="ClickTest.cs" />
+    <Compile Include="Core\ApplicationTest.cs" />
+    <Compile Include="Core\ClickTest.cs" />
     <Compile Include="DemoTest.cs" />
-    <Compile Include="FinderTest.cs" />
-    <Compile Include="LocatorTest.cs" />
+    <Compile Include="Core\FinderTest.cs" />
+    <Compile Include="Core\LocatorTest.cs" />
+    <Compile Include="Interpreter\ServerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testers\AssertionSupportTest.cs" />
     <Compile Include="Testers\ClickTest.cs" />
     <Compile Include="Testers\WindowRelatedTest.cs" />
     <Compile Include="Testers\TextAssertionTest.cs" />
-    <Compile Include="TextTest.cs" />
-    <Compile Include="ToggleFeatureTest.cs" />
-    <Compile Include="WaitForConditionTest.cs" />
-    <Compile Include="WindowTest.cs" />
+    <Compile Include="Core\TextTest.cs" />
+    <Compile Include="Core\ToggleFeatureTest.cs" />
+    <Compile Include="Core\WaitForConditionTest.cs" />
+    <Compile Include="Core\WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eft\Eft.Core.csproj">
       <Project>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</Project>
       <Name>Eft.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interpreter\Eft.Interpreter.csproj">
+      <Project>{AB36A761-7BB6-4659-855E-60D344E6810C}</Project>
+      <Name>Eft.Interpreter</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stub\Stub.csproj">
       <Project>{02B8B9E0-ED71-4425-A0C6-EFBAE2CFC50F}</Project>
