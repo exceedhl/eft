@@ -65,7 +65,7 @@ namespace Eft.Elements
             get { return provider.ClickablePoint; }
         }
 
-        public void DbClick()
+        public void DblClick()
         {
             provider.Click(MouseButton.Left, ModifierKeys.None, 2);
         }

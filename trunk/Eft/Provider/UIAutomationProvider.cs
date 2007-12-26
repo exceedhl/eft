@@ -209,7 +209,15 @@ namespace Eft.Provider
 
         public List<Element> Find(string selectorString)
         {
-            return Find(parser.Parse(selectorString));
+            try
+            {
+                return Find(parser.Parse(selectorString));    
+            } 
+            catch(ElementSearchException ex)
+            {
+                throw new ElementSearchException(string.Format("Element <{0}> cannot find in its container <{1}>", selectorString, Name), ex);    
+            }
+            
         }
 
         public List<Element> Find(Selector selector)
