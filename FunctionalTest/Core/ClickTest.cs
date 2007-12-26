@@ -70,7 +70,7 @@ namespace FunctionalTest.Core
         [Test]
         public void double_click()
         {
-            pressButtonWithCount.DbClick();
+            pressButtonWithCount.DblClick();
             Assert.AreEqual("Left Pressed 2", logText.Text);
         }
 

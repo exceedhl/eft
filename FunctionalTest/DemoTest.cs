@@ -12,13 +12,13 @@ namespace FunctionalTest
         public void evolve_test()
         {
             Application server =
-                Application.Run(@"C:\works\mac\src\build-output\server\Macquarie.Connect.Server.exe");
+                Application.Run(@"D:\work\evolve\src\build-output\server\Macquarie.Connect.Server.exe");
             Application client = Application.Run(@"C:\Program Files\Microsoft Office\OFFICE11\outlook.exe");
 
-            Element launcherWindow = client.FindTopWindow("Launcher Window");
+            Element launcherWindow = client.FindTopWindow("Macquarie Connect");
             launcherWindow.FindFirst("#btnLaunchContactList").Click();
 
-            Element contactListWindow = client.FindTopWindow("My contact list");
+            Element contactListWindow = client.FindTopWindow("My Contact List");
 //            contactListWindow.FindFirst("#btOpenGlobalContactList").Click();
             contactListWindow.FindFirst("#tbKeywords:last-of-type").ClickAndType("rog");
             contactListWindow.FindFirst("#contactOrUserTabControl [name='Rogerio']").Click();
@@ -29,19 +29,22 @@ namespace FunctionalTest
             contactListWindow.FindFirst("#miCreateNote").Click();
             Window contactNoteWindow = client.FindTopWindow("*Rogerio Chequer");
             contactNoteWindow.FindFirst("#textContainer").Type("some note");
-            contactNoteWindow.FindFirst("#inputBox").Type("Marc Mcneill");
+            contactNoteWindow.FindFirst("#inputBox:nth-of-type(1)").Type("Marc Mcneill");
             contactNoteWindow.FindFirst("#cbSubType").Focus();
             contactNoteWindow.Type("{DOWN}");
             contactNoteWindow.FindFirst("#btnSave").Click();
 
+            Element messageBoxWindow = contactNoteWindow.FindFirst("Window[name='Macquarie Connect']");
+            messageBoxWindow.FindFirst("Button").Click();
+
             Wait.UntilChanged(delegate { return launcherWindow.FindFirst("#tbAlertsList").Text; });
             launcherWindow.FindFirst("#btnLaunchAlertList").Click();
             Window alertWindow = client.FindTopWindow("Alerts");
-            alertWindow.FindFirst(".AlertDisplayControl:first-of-type").Click();
+            alertWindow.FindFirst(".AlertControlContainer:first-of-type").DblClick();
 
 
-            client.Stop();
-            server.Stop();
+//            client.Stop();
+//            server.Stop();
         }
 
         [Test]
