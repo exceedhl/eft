@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
@@ -23,12 +21,12 @@ namespace Eft.Elements
             this.provider = provider;
         }
 
-        public virtual string Name
+        public string Name
         {
             get { return provider.Name; }
         }
 
-        public virtual string Id
+        public string Id
         {
             get { return provider.Id; }
         }
@@ -45,7 +43,7 @@ namespace Eft.Elements
             }
         }
 
-        public virtual void Focus()
+        public void Focus()
         {
             provider.Focus();
         }
@@ -181,46 +179,5 @@ namespace Eft.Elements
         }
 
         #endregion
-    }
-    public class NullElement : Element
-    {
-        private readonly string selectorString;
-
-        public NullElement(string selectorString) : base(null)
-        {
-            this.selectorString = selectorString;
-        }
-
-        
-        public override string Name
-        {
-            get { throw bomb(); }
-        }
-
-
-        public override string Id
-        {
-            get { throw bomb(); }
-
-        }
-
-        public override string Text
-        {
-            get { throw bomb();}
-
-        }
-
-        public override void Focus()
-        {
-            throw bomb();
-        }
-     
-
-        public SystemException bomb()
-        {
-            return new SystemException("Failed to locate element " + this.selectorString);
-        }
-
-
     }
 }
