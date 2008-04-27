@@ -14,8 +14,12 @@
   <property name="func.test.dll" value="${basedir}/FunctionalTest/bin/debug/FunctionalTest.dll" />
   <property name="func.test.report" value="${reports.dir}\TestReport-Functional.xml" />
 
-  <loadtasks assembly="${basedir}\library\nant\NAnt.Contrib.Tasks.dll" />
-
+  <target name="-msbuild">
+    <exec
+      program="msbuild.exe"
+      commandline="${solution.file} /t:${target.name} /p:configuration=${build.config};TargetFrameworkVersion=v3.0 /v:Normal"/>
+  </target>
+  
   <target name="-clean">
     <delete>
       <fileset>
@@ -23,24 +27,22 @@
         <include name="${package.dir}/**"/>
       </fileset>
     </delete>
-    <msbuild project="${solution.file}" target="Clean" verbosity="Normal" >
-      <arg line="/p:Configuration=Debug"/>
-    </msbuild>
-    <msbuild project="${solution.file}" target="Clean" verbosity="Normal" >
-      <arg line="/p:Configuration=Release"/>
-    </msbuild>
+    <foreach item="String" in="Debug,Release" delim="," property="build.config">
+      <property name="target.name" value="Clean"/>
+      <call target="-msbuild"/>
+    </foreach>
   </target>
 
   <target name="-build">
-    <msbuild project="${solution.file}" target="Build" verbosity="Normal" >
-      <arg line="/p:Configuration=Debug"/>
-    </msbuild>
+    <property name="target.name" value="Build"/>
+    <property name="build.config" value="Debug"/>
+    <call target="-msbuild"/>
   </target>
 
   <target name="-build.release">
-    <msbuild project="${solution.file}" target="Build" verbosity="Normal" >
-      <arg line="/p:Configuration=Release"/>
-    </msbuild>
+    <property name="target.name" value="Build"/>
+    <property name="build.config" value="Release"/>
+    <call target="-msbuild"/>
   </target>
 
 
