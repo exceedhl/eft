@@ -1,0 +1,20 @@
+AUT deployment(db preparation, network etc.) and trigger the tests to run
+test deployment(nunit tests assembly or other formats? deploy tests to all machines or somewhere central? will tests be with AUT?)
+test running coordination
+result collecting
+clustering?
+
+how to migrate from single machine tests to multiple machines parallel?
+
+
+defects of active controller(hub), passing commands from hub to agents:
+* fixture setup/teardown problem - no commands can be created to accomodate complex setup/teardown scenarios
+
+scripts/intepreter
+using different language to write tests
+parallel - test cases dispatch
+
+
+parallel is very much like a mapreduce problem
+the hub will actively control the agents, agents will probably only return result to the server
+it's important to provide users a good interface to use(rather than letting them to glue different tools together to finish jobs by themselves)
