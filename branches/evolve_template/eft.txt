@@ -1,0 +1,92 @@
+docs
+legal issue
+blog - domain name, space
+notification email
+
+stablize typing - clear not stable
+enhance finding - popup window issue
+ * desktop.self - to find other stuff like popup window
+ ** toolbar - to find tray icon
+ ** integrate element find children with desktop findchildren, use app to find everything including windows, support more ways to find windows and other top level controls
+enhance text property to support more elements
+get all visible text from a window
+listbox, combobox item waiting - because they can be found initially but in order to click it you have to wait it shown after listbox is clicked.
+close window
+rdp to control resolution
+
+high level api
+viscript integration
+more controls - table
+
+drag and drop
+iaccessible integration
+
+enhance type to support unicode
+
+google group
+faq
+other related tools
+resource group and link
+
+office support
+distributed runner
+recorder
+commandline testing - for command line, wait for a command finishing execution
+interpreter and scripting language
+selenium rc like architecture to support any languages
+wireframe - test result generation
+
+bring window into foreground
+move and resize window
+make sure element is in screen 
+change resolution
+
+different types of locators?
+click without focus?
+call menu item?
+
+
+sendkeys not working in vista?
+
+
+
+aware of:
+* testing
+* operations currently all in Element
+* where is the window finding logic
+* higher level apis design
+* provide enough error message for debug
+
+a testing tool:
+* action
+* assertion (junit?)
+  * if assertion can be done in junit family tools, we can just provide properties for assertion
+* some necessary elements:
+ ** locator
+
+problems:
+* multiple apps
+* multiple windows
+
+why providing a fit like scripting language:
+* easy to use for non programmer
+* make it easy to integrate at a higher level
+  (command line tool, writing and running tests without visual studio like tools, easy to deploy tests)
+
+benefits from eft:
+* reduce the necessity and complexity of encapsulation by end users
+* fewer lines of codes, reduce the probability of bugs and easy to debug
+* powerful css syntax locator
+* pattern matching
+* high level api, fit like scripting language, friendly for non programmers
+* build upon .net, supporting many languages
+ ** use ruby.net to write your dsls
+
+
+* controls
+ ** toggle button - radio button, checkbox, expander
+ ** listview etc. - selected, rows, columns, select etc.
+    ** listbox, combobox, listview, tabcontrol
+    ** contextmenu
+    ** treeview
+    ** toolbar, statusbar, progress control, slider

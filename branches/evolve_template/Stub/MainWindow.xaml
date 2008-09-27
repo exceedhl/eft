@@ -1,0 +1,12 @@
+﻿<Window x:Class="stub.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    Title="Stub::Window" SizeToContent="WidthAndHeight">
+  <StackPanel>
+    <Button x:Name="openWindowTestWindow">Open window test window</Button>
+    <Button x:Name="openTextTestWindow">Open text test window</Button>
+    <Button x:Name="openClickTestWindow">Open click test window</Button>
+    <Button x:Name="openWaitForConditionTestWindow">Open wait for condition test window</Button>
+    
+  </StackPanel>
+</Window>

@@ -1,0 +1,13 @@
+﻿<Window x:Class="stub.ClickTestWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="click test window" SizeToContent="WidthAndHeight"
+    >
+  <StackPanel>
+    <TextBox Name="log"></TextBox>
+    <Button Name="bigButton" Width="200" Height="100">big button</Button>
+    <Button Name="pressButton">press button</Button>
+    <Button Name="releaseButton">release button</Button>
+    <Button Name="pressButtonWithCount">press button with count</Button>
+  </StackPanel>
+</Window>

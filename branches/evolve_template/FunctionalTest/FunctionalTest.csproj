@@ -1,0 +1,100 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92DF45CB-EA87-4E35-B57A-F9718B827551}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FunctionalTest</RootNamespace>
+    <AssemblyName>FunctionalTest</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.0.2, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.1.0.584, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\mock\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\uiautomation\UIAutomationClient.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationTypes, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\uiautomation\UIAutomationTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\ApplicationTest.cs" />
+    <Compile Include="Core\ClickTest.cs" />
+    <Compile Include="DemoTest.cs" />
+    <Compile Include="Core\FinderTest.cs" />
+    <Compile Include="Core\LocatorTest.cs" />
+    <Compile Include="Interpreter\ServerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testers\AssertionSupportTest.cs" />
+    <Compile Include="Testers\ClickTest.cs" />
+    <Compile Include="Testers\WindowRelatedTest.cs" />
+    <Compile Include="Testers\TextAssertionTest.cs" />
+    <Compile Include="Core\TextTest.cs" />
+    <Compile Include="Core\ToggleFeatureTest.cs" />
+    <Compile Include="Core\WaitForConditionTest.cs" />
+    <Compile Include="Core\WindowTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eft\Eft.Core.csproj">
+      <Project>{1B5AB4B5-E585-4AB0-B28D-AFFA2152DC54}</Project>
+      <Name>Eft.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interpreter\Eft.Interpreter.csproj">
+      <Project>{AB36A761-7BB6-4659-855E-60D344E6810C}</Project>
+      <Name>Eft.Interpreter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stub\Stub.csproj">
+      <Project>{02B8B9E0-ED71-4425-A0C6-EFBAE2CFC50F}</Project>
+      <Name>Stub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tester\Eft.Tester.csproj">
+      <Project>{44418D07-02A2-42F3-9490-772C1FE835B7}</Project>
+      <Name>Eft.Tester</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

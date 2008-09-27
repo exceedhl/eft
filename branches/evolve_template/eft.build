@@ -1,0 +1,87 @@
+﻿<?xml version="1.0"?>
+<project name="Evolve" default="all" basedir=".">
+  <property name="basedir" value="." />
+  <property name="reports.dir" value="${basedir}/reports" />
+  
+  <property name="package.dir" value="${basedir}/package" />
+  <property name="package.content.dir" value="${package.dir}/content" />
+  
+  <property name="solution.file" value="${basedir}\eft.sln" />
+  
+  <property name="unit.test.dll" value="${basedir}/UnitTest/bin/debug/UnitTest.dll" />
+  <property name="unit.test.report" value="${reports.dir}\TestReport-Unit.xml" />
+  
+  <property name="func.test.dll" value="${basedir}/FunctionalTest/bin/debug/FunctionalTest.dll" />
+  <property name="func.test.report" value="${reports.dir}\TestReport-Functional.xml" />
+
+  <target name="-msbuild">
+    <exec
+      program="msbuild.exe"
+      commandline="${solution.file} /t:${target.name} /p:configuration=${build.config};TargetFrameworkVersion=v3.0 /v:Normal"/>
+  </target>
+  
+  <target name="-clean">
+    <delete>
+      <fileset>
+        <include name="${reports.dir}/**"/>
+        <include name="${package.dir}/**"/>
+      </fileset>
+    </delete>
+    <foreach item="String" in="Debug,Release" delim="," property="build.config">
+      <property name="target.name" value="Clean"/>
+      <call target="-msbuild"/>
+    </foreach>
+  </target>
+
+  <target name="-build">
+    <property name="target.name" value="Build"/>
+    <property name="build.config" value="Debug"/>
+    <call target="-msbuild"/>
+  </target>
+
+  <target name="-build.release">
+    <property name="target.name" value="Build"/>
+    <property name="build.config" value="Release"/>
+    <call target="-msbuild"/>
+  </target>
+
+
+  <target name="-unit.test">
+    <mkdir dir="${reports.dir}"/>
+    <exec program="library\nunit\nunit-console.exe">
+      <arg value="${unit.test.dll}"/>
+      <arg value="/xml=${unit.test.report}"/>
+      <arg value="/nologo"/>
+      <arg value="/noshadow"/>
+    </exec>
+  </target>
+
+  <target name="-functional.test">
+    <mkdir dir="${reports.dir}"/>
+    <exec program="library\nunit\nunit-console.exe">
+      <arg value="${func.test.dll}"/>
+      <arg value="/xml=${func.test.report}"/>
+      <arg value="/nologo"/>
+      <arg value="/noshadow"/>
+    </exec>
+  </target>
+
+  <target name="-package">
+    <mkdir dir="${package.dir}"/>
+    <copy todir="${package.content.dir}" file="${basedir}/Eft/bin/release/Eft.dll" />
+    <copy todir="${package.content.dir}" file="${basedir}/license.txt" />
+
+    <zip zipfile="${package.dir}/eft.zip">
+      <fileset basedir="${package.content.dir}/">
+        <include name="**/*" />
+      </fileset>
+    </zip>
+  </target>
+
+  <target name="clean" depends="-clean" descripton="clean all"/>
+  <target name="build" depends="-build" descripton="build all"/>
+  <target name="all" depends="-clean, -build, -unit.test, -functional.test" descripton="all"/>
+  <target name="ft" depends="-clean, -build, -functional.test" descripton="ft"/>
+  <target name="package" depends="-clean, -build.release, -package" descripton="package"/>
+
+</project>
